@@ -1,0 +1,94 @@
+.app-header {
+  position: fixed;
+  top: var(--pwa-banner-stack, 0px);
+  left: 0;
+  right: 0;
+  z-index: 20;
+  box-sizing: border-box;
+  width: 100%;
+  height: calc(56px + env(safe-area-inset-top, 0px));
+  padding: env(safe-area-inset-top, 0px) 0.75rem 0;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+}
+
+html[data-theme='dark'] .app-header {
+  background: #000000;
+}
+
+.app-header__row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  height: 56px;
+  min-height: 56px;
+}
+
+.app-header__left {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+.app-header__center {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.25rem;
+}
+
+.app-header__logo {
+  display: block;
+  height: 32px;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.app-header__page {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  max-width: 100%;
+  text-align: center;
+}
+
+.app-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.app-header__icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: none;
+  border-radius: var(--color-radius);
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.app-header__icon-btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.app-header__flag {
+  font-size: 1.35rem;
+  line-height: 1;
+}

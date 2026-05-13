@@ -1,0 +1,28 @@
+{
+  "name": "u-festival",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && node scripts/check-chunk-sizes.mjs",
+    "analyze": "vite build --mode analyze",
+    "preview": "vite preview",
+    "icons": "node scripts/generate-pwa-icons.mjs",
+    "prompt-logbook": "node scripts/build-prompt-logbook.mjs"
+  },
+  "dependencies": {
+    "@fontsource/sansation": "^5.2.2",
+    "qrcode": "^1.5.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "rollup-plugin-visualizer": "^5.14.0",
+    "sharp": "^0.34.5",
+    "vite": "^5.4.14",
+    "vite-plugin-pwa": "^0.21.1"
+  }
+}

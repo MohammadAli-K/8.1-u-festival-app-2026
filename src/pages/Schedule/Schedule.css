@@ -1,0 +1,241 @@
+.page-schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-height: 0;
+}
+
+.page-schedule__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: space-between;
+}
+
+.page-schedule__scroll {
+  flex: 1;
+  min-height: 12rem;
+  max-height: min(58dvh, 28rem);
+  overflow: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--color-radius);
+  background: var(--color-surface);
+  -webkit-overflow-scrolling: touch;
+}
+
+.page-schedule__empty {
+  margin: 0;
+  padding: 1.25rem;
+  text-align: center;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
+
+.schedule-grid {
+  --schedule-slot-min: 2.75rem;
+  --schedule-stage-w: 4.5rem;
+  min-width: calc(var(--schedule-stage-w) + var(--schedule-slot-min) * var(--schedule-num-slots, 56));
+}
+
+.schedule-axis {
+  display: flex;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background: color-mix(in srgb, var(--color-bg) 92%, var(--color-secondary));
+  border-bottom: 1px solid var(--color-border);
+}
+
+.schedule-axis__corner {
+  flex: 0 0 var(--schedule-stage-w);
+  min-width: var(--schedule-stage-w);
+  position: sticky;
+  left: 0;
+  z-index: 4;
+  background: inherit;
+  border-right: 1px solid var(--color-border);
+}
+
+.schedule-axis__slots {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+}
+
+.schedule-axis__cell {
+  border-left: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
+  font-size: 0.65rem;
+  color: var(--color-muted);
+  padding: 0.2rem 0.1rem;
+  text-align: center;
+  min-height: 2rem;
+}
+
+.schedule-axis__label {
+  font-weight: 700;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.schedule-row {
+  display: flex;
+  border-bottom: 1px solid var(--color-border);
+  min-height: 3.75rem;
+}
+
+.schedule-row__stage {
+  flex: 0 0 var(--schedule-stage-w);
+  min-width: var(--schedule-stage-w);
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  background: var(--color-bg);
+  border-right: 1px solid var(--color-border);
+}
+
+.schedule-row__stage img {
+  width: 100%;
+  max-width: 3.25rem;
+  height: auto;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.schedule-row__track {
+  flex: 1;
+  display: grid;
+  position: relative;
+  align-items: stretch;
+  min-width: calc(var(--schedule-slot-min) * var(--schedule-num-slots, 56));
+}
+
+.schedule-block:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--color-text);
+  z-index: 2;
+}
+
+.schedule-block {
+  position: relative;
+  margin: 0.2rem 0;
+  padding: 0.35rem 0.4rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #fff;
+  overflow: hidden;
+  box-sizing: border-box;
+  min-height: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.2s ease;
+}
+
+.schedule-block:active {
+  transform: scale(0.98);
+}
+
+.schedule-block__title {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.schedule-block__time {
+  font-weight: 400;
+  font-size: 0.62rem;
+  opacity: 0.95;
+  margin-top: 0.15rem;
+}
+
+.schedule-block__fav {
+  position: absolute;
+  top: 0.15rem;
+  right: 0.15rem;
+  font-size: 0.65rem;
+  line-height: 1;
+  text-shadow: 0 0 2px color-mix(in srgb, #000 55%, transparent);
+}
+
+.schedule-block--poton {
+  background: var(--color-accent);
+}
+
+.schedule-block--the-lake {
+  background: var(--color-secondary);
+}
+
+.schedule-block--the-club {
+  background: var(--color-info);
+  color: #000;
+}
+
+.schedule-block--the-club .schedule-block__time {
+  color: color-mix(in srgb, #000 75%, transparent);
+}
+
+.schedule-block--hanggar {
+  background: var(--color-stage-hanggar);
+}
+
+.schedule-block--live {
+  animation: schedule-live-pulse 1.6s ease-in-out infinite;
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+  z-index: 1;
+}
+
+@keyframes schedule-live-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent) 55%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-accent) 0%, transparent);
+  }
+}
+
+.schedule-detail__img {
+  width: 100%;
+  max-height: 12rem;
+  object-fit: cover;
+  border-radius: var(--color-radius);
+  margin-bottom: 0.75rem;
+}
+
+.schedule-detail__meta {
+  font-size: 0.88rem;
+  color: var(--color-muted);
+  margin: 0 0 0.75rem;
+}
+
+.schedule-detail__desc {
+  margin: 0 0 1rem;
+  line-height: 1.55;
+}
+
+.schedule-detail__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.schedule-detail__fav {
+  align-self: flex-start;
+}

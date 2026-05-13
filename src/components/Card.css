@@ -1,0 +1,54 @@
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--color-radius);
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.card__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 12rem;
+  object-fit: cover;
+}
+
+.card__body {
+  padding: 1rem;
+}
+
+.card__title {
+  margin: 0 0 0.35rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.card__subtitle {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+.card__content {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--color-text);
+}
+
+.card--hero {
+  text-align: center;
+}
+
+.card--hero .card__body {
+  padding: 1.25rem 1rem;
+}
+
+.card--hero .card__title {
+  margin: 0;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+}

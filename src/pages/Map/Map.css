@@ -1,0 +1,224 @@
+.page-map {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  min-height: 0;
+  margin: -0.25rem -1rem 0;
+  width: calc(100% + 2rem);
+}
+
+.page-map__title {
+  margin: 0 1rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-secondary);
+}
+
+.page-map__viewport {
+  position: relative;
+  flex: 1;
+  min-height: 14rem;
+  touch-action: none;
+  border-radius: var(--color-radius);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-secondary) 8%, var(--color-bg));
+}
+
+.page-map__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+}
+
+.page-map__floorplan {
+  pointer-events: none;
+}
+
+.page-map__controls {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  z-index: 2;
+}
+
+.page-map__zoom-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--color-radius);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 1px 4px color-mix(in srgb, var(--color-text) 12%, transparent);
+}
+
+.page-map__zoom-btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.page-map__gps-banner {
+  position: absolute;
+  left: 0.5rem;
+  right: 3.25rem;
+  top: 0.5rem;
+  z-index: 2;
+  padding: 0.35rem 0.5rem;
+  font-size: 0.8rem;
+  line-height: 1.3;
+  border-radius: var(--color-radius);
+  background: color-mix(in srgb, var(--color-bg) 88%, transparent);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.page-map__marker {
+  cursor: pointer;
+}
+
+.page-map__marker:focus {
+  outline: none;
+}
+
+.page-map__marker:focus-visible circle:first-of-type {
+  stroke: #ffffff;
+  stroke-width: 5px;
+  filter: drop-shadow(0 0 4px rgb(0 0 0 / 0.75));
+}
+
+.page-map__marker-num {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 34px;
+  fill: #fff;
+  stroke: #69008b;
+  stroke-width: 1.2px;
+  paint-order: stroke fill;
+  pointer-events: none;
+}
+
+.page-map__gps-dot {
+  fill: var(--color-accent);
+  stroke: #fff;
+  stroke-width: 3px;
+  animation: map-gps-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes map-gps-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.page-map__legend {
+  margin: 0 1rem 0.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--color-radius);
+  background: var(--color-surface);
+  overflow: hidden;
+}
+
+.page-map__legend-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: none;
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-align: left;
+}
+
+.page-map__legend-toggle:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -2px;
+}
+
+.page-map__legend-toggle .material-symbols-outlined {
+  transition: transform 0.2s ease;
+}
+
+.page-map__legend--open .page-map__legend-toggle .material-symbols-outlined {
+  transform: rotate(180deg);
+}
+
+.page-map__legend-body {
+  display: none;
+  padding: 0 0.75rem 0.75rem;
+  gap: 0.5rem;
+  flex-direction: column;
+}
+
+.page-map__legend--open .page-map__legend-body {
+  display: flex;
+}
+
+.page-map__legend-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.88rem;
+  color: var(--color-text);
+}
+
+.page-map__legend-row img {
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.page-map__sheet-stage {
+  width: 100%;
+  max-height: 8rem;
+  object-fit: contain;
+  border-radius: var(--color-radius);
+  margin-bottom: 0.75rem;
+}
+
+.page-map__sheet-type {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  line-height: 1.45;
+}
+
+.page-map__sheet-section {
+  margin: 0 0 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-secondary);
+}
+
+.page-map__sheet-line {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  line-height: 1.4;
+}
+
+.page-map__sheet-muted {
+  color: var(--color-muted);
+  font-style: italic;
+}
