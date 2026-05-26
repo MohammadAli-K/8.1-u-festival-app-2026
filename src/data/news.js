@@ -30,11 +30,11 @@ export const newsItems = [
     isNew: true,
   },
   {
-    id: 'armin-ponton',
+    id: 'armin-podium',
     type: 'update',
     title: {
-      nl: 'Armin van Buuren start om 10:15 op Ponton',
-      en: 'Armin van Buuren starts at 10:15 on Ponton',
+      nl: 'Armin van Buuren start om 10:30 op Podium',
+      en: 'Armin van Buuren starts at 10:30 on Podium',
     },
     body: {
       nl: 'Laatste wijziging in het tijdschema — controleer vlak voor optreden opnieuw.',

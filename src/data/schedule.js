@@ -1,9 +1,9 @@
 /**
  * Festival line-up — static data (replace with fetch() later via useSchedule).
- * Stage spellings: Poton, The Lake, The Club, Hanggar.
+ * Stage spellings: Podium (id poton), The Lake, The Club, Hanggar.
  */
 
-/** @typedef {'saturday' | 'sunday'} DayKey */
+/** @typedef {'saturday' | 'sunday' | 'wednesday'} DayKey */
 
 /**
  * @typedef {'poton' | 'the-lake' | 'the-club' | 'hanggar'} StageId
@@ -40,76 +40,76 @@ export const GRID_END_MINUTES = 24 * 60;
 export const NUM_QUARTER_SLOTS = (GRID_END_MINUTES - GRID_START_MINUTES) / 15;
 
 /** @type {Record<DayKey, Partial<Record<StageId, ScheduleSlotRaw[]>>>} */
+/** Voorlopig blokkenschema — bron: src/assets/wireframes/blokkenschema.png */
 export const scheduleSlotsByDay = {
   saturday: {
     poton: [
-      { id: 'sat-poton-1015-armin', stageId: 'poton', actId: 'armin-van-buuren', start: '10:15', end: '12:00' },
-      { id: 'sat-poton-1245-kensington', stageId: 'poton', actId: 'kensington', start: '12:45', end: '14:15' },
-      { id: 'sat-poton-1445-de-staat', stageId: 'poton', actId: 'de-staat', start: '14:45', end: '16:30' },
-      { id: 'sat-poton-1700-navarone', stageId: 'poton', actId: 'navarone', start: '17:00', end: '18:45' },
+      { id: 'sat-poton-1030-armin', stageId: 'poton', actId: 'armin-van-buuren', start: '10:30', end: '11:45' },
+      { id: 'sat-poton-1230-kensington', stageId: 'poton', actId: 'kensington', start: '12:30', end: '14:15' },
+      { id: 'sat-poton-1500-de-staat', stageId: 'poton', actId: 'de-staat', start: '15:00', end: '16:30' },
+      { id: 'sat-poton-1715-navarone', stageId: 'poton', actId: 'navarone', start: '17:15', end: '18:45' },
       { id: 'sat-poton-1915-dotan', stageId: 'poton', actId: 'dotan', start: '19:15', end: '21:00' },
-      { id: 'sat-poton-2130-froukje', stageId: 'poton', actId: 'froukje', start: '21:30', end: '23:45' },
+      { id: 'sat-poton-2200-froukje', stageId: 'poton', actId: 'froukje', start: '22:00', end: '23:45' },
     ],
     'the-lake': [
-      { id: 'sat-lake-1000-t1', stageId: 'the-lake', actId: null, titleKey: 'schedule.slot.talent1', start: '10:00', end: '11:00' },
-      { id: 'sat-lake-1115-t2', stageId: 'the-lake', actId: null, titleKey: 'schedule.slot.talent2', start: '11:15', end: '12:15' },
-      { id: 'sat-lake-1300-t3', stageId: 'the-lake', actId: null, titleKey: 'schedule.slot.talent3', start: '13:00', end: '14:00' },
-      { id: 'sat-lake-1445-t4', stageId: 'the-lake', actId: null, titleKey: 'schedule.slot.talent4', start: '14:45', end: '15:45' },
-      { id: 'sat-lake-1630-t5', stageId: 'the-lake', actId: null, titleKey: 'schedule.slot.talent5', start: '16:30', end: '17:30' },
-      { id: 'sat-lake-1800-t6', stageId: 'the-lake', actId: null, titleKey: 'schedule.slot.talent6', start: '18:00', end: '19:00' },
-      { id: 'sat-lake-1945-t7', stageId: 'the-lake', actId: null, titleKey: 'schedule.slot.talent7', start: '19:45', end: '21:00' },
+      { id: 'sat-lake-1000-t1', stageId: 'the-lake', actId: null, titleKey: 'schedule.slot.talent1', start: '10:00', end: '11:15' },
+      { id: 'sat-lake-1145-t2', stageId: 'the-lake', actId: null, titleKey: 'schedule.slot.talent2', start: '11:45', end: '13:15' },
+      { id: 'sat-lake-1400-t3', stageId: 'the-lake', actId: null, titleKey: 'schedule.slot.talent3', start: '14:00', end: '15:45' },
+      { id: 'sat-lake-1615-t4', stageId: 'the-lake', actId: null, titleKey: 'schedule.slot.talent4', start: '16:15', end: '18:00' },
+      { id: 'sat-lake-1830-t5', stageId: 'the-lake', actId: null, titleKey: 'schedule.slot.talent5', start: '18:30', end: '20:15' },
+      { id: 'sat-lake-2045-t6', stageId: 'the-lake', actId: null, titleKey: 'schedule.slot.talent6', start: '20:45', end: '22:30' },
     ],
     'the-club': [
-      { id: 'sat-club-1130-comedy', stageId: 'the-club', actId: null, titleKey: 'schedule.slot.comedy', start: '11:30', end: '12:45' },
-      { id: 'sat-club-1315-lecture', stageId: 'the-club', actId: null, titleKey: 'schedule.slot.lecture', start: '13:15', end: '14:30' },
-      { id: 'sat-club-1445-theater', stageId: 'the-club', actId: null, titleKey: 'schedule.slot.theater', start: '14:45', end: '16:15' },
-      { id: 'sat-club-1630-movie', stageId: 'the-club', actId: null, titleKey: 'schedule.slot.movie', start: '16:30', end: '18:15' },
-      { id: 'sat-club-1900-performance', stageId: 'the-club', actId: null, titleKey: 'schedule.slot.performance', start: '19:00', end: '21:00' },
-      { id: 'sat-club-2130-illusionist', stageId: 'the-club', actId: null, titleKey: 'schedule.slot.illusionist', start: '21:30', end: '23:45' },
+      { id: 'sat-club-1200-comedy', stageId: 'the-club', actId: null, titleKey: 'schedule.slot.comedy', start: '12:00', end: '13:15' },
+      { id: 'sat-club-1400-lecture', stageId: 'the-club', actId: null, titleKey: 'schedule.slot.lecture', start: '14:00', end: '15:15' },
+      { id: 'sat-club-1600-theater', stageId: 'the-club', actId: null, titleKey: 'schedule.slot.theater', start: '16:00', end: '17:45' },
+      { id: 'sat-club-1830-movie', stageId: 'the-club', actId: null, titleKey: 'schedule.slot.movie', start: '18:30', end: '20:45' },
+      { id: 'sat-club-2115-performance', stageId: 'the-club', actId: null, titleKey: 'schedule.slot.performance', start: '21:15', end: '22:30' },
+      { id: 'sat-club-2300-illusionist', stageId: 'the-club', actId: null, titleKey: 'schedule.slot.illusionist', start: '23:00', end: '23:45' },
     ],
     hanggar: [
-      { id: 'sat-hang-1000-dj1', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj1', start: '10:00', end: '11:00' },
-      { id: 'sat-hang-1100-dj2', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj2', start: '11:00', end: '12:15' },
-      { id: 'sat-hang-1230-dj3', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj3', start: '12:30', end: '13:45' },
-      { id: 'sat-hang-1400-dj4', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj4', start: '14:00', end: '15:15' },
-      { id: 'sat-hang-1515-dj5', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj5', start: '15:15', end: '16:45' },
-      { id: 'sat-hang-1700-dj6', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj6', start: '17:00', end: '18:30' },
-      { id: 'sat-hang-1845-dj7', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj7', start: '18:45', end: '21:15' },
-      { id: 'sat-hang-2130-dj8', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj8', start: '21:30', end: '23:45' },
+      { id: 'sat-hang-1000-dj1', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj1', start: '10:00', end: '11:15' },
+      { id: 'sat-hang-1115-dj2', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj2', start: '11:15', end: '12:45' },
+      { id: 'sat-hang-1315-dj3', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj3', start: '13:15', end: '14:45' },
+      { id: 'sat-hang-1515-dj4', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj4', start: '15:15', end: '16:45' },
+      { id: 'sat-hang-1715-dj5', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj5', start: '17:15', end: '18:45' },
+      { id: 'sat-hang-1915-dj6', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj6', start: '19:15', end: '20:45' },
+      { id: 'sat-hang-2115-dj7', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj7', start: '21:15', end: '22:45' },
+      { id: 'sat-hang-2300-dj8', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj8', start: '23:00', end: '23:45' },
     ],
   },
   sunday: {
     poton: [
-      { id: 'sun-poton-1045-martin', stageId: 'poton', actId: 'martin-garrix', start: '10:45', end: '12:45' },
-      { id: 'sun-poton-1315-within', stageId: 'poton', actId: 'within-temptation', start: '13:15', end: '15:15' },
-      { id: 'sun-poton-1530-chef', stageId: 'poton', actId: 'chefspecial', start: '15:30', end: '17:15' },
-      { id: 'sun-poton-1800-eefje', stageId: 'poton', actId: 'eefje-de-visser', start: '18:00', end: '20:00' },
-      { id: 'sun-poton-2030-spinvis', stageId: 'poton', actId: 'spinvis', start: '20:30', end: '22:00' },
+      { id: 'sun-poton-1100-martin', stageId: 'poton', actId: 'martin-garrix', start: '11:00', end: '12:45' },
+      { id: 'sun-poton-1400-within', stageId: 'poton', actId: 'within-temptation', start: '14:00', end: '15:45' },
+      { id: 'sun-poton-1645-chef', stageId: 'poton', actId: 'chefspecial', start: '16:45', end: '18:30' },
+      { id: 'sun-poton-1930-eefje', stageId: 'poton', actId: 'eefje-de-visser', start: '19:30', end: '21:15' },
+      { id: 'sun-poton-2215-spinvis', stageId: 'poton', actId: 'spinvis', start: '22:15', end: '23:45' },
     ],
     'the-lake': [
       { id: 'sun-lake-1000-t1', stageId: 'the-lake', actId: null, titleKey: 'schedule.slot.talent1', start: '10:00', end: '11:15' },
-      { id: 'sun-lake-1130-t2', stageId: 'the-lake', actId: null, titleKey: 'schedule.slot.talent2', start: '11:30', end: '12:45' },
-      { id: 'sun-lake-1315-t3', stageId: 'the-lake', actId: null, titleKey: 'schedule.slot.talent3', start: '13:15', end: '14:30' },
-      { id: 'sun-lake-1445-t4', stageId: 'the-lake', actId: null, titleKey: 'schedule.slot.talent4', start: '14:45', end: '16:00' },
-      { id: 'sun-lake-1630-t5', stageId: 'the-lake', actId: null, titleKey: 'schedule.slot.talent5', start: '16:30', end: '18:00' },
-      { id: 'sun-lake-1900-t6', stageId: 'the-lake', actId: null, titleKey: 'schedule.slot.talent6', start: '19:00', end: '20:30' },
+      { id: 'sun-lake-1145-t2', stageId: 'the-lake', actId: null, titleKey: 'schedule.slot.talent2', start: '11:45', end: '13:15' },
+      { id: 'sun-lake-1400-t3', stageId: 'the-lake', actId: null, titleKey: 'schedule.slot.talent3', start: '14:00', end: '15:45' },
+      { id: 'sun-lake-1615-t4', stageId: 'the-lake', actId: null, titleKey: 'schedule.slot.talent4', start: '16:15', end: '18:00' },
+      { id: 'sun-lake-1830-t5', stageId: 'the-lake', actId: null, titleKey: 'schedule.slot.talent5', start: '18:30', end: '20:15' },
+      { id: 'sun-lake-2100-t6', stageId: 'the-lake', actId: null, titleKey: 'schedule.slot.talent6', start: '21:00', end: '22:45' },
     ],
     'the-club': [
-      { id: 'sun-club-1130-comedy', stageId: 'the-club', actId: null, titleKey: 'schedule.slot.comedy', start: '11:30', end: '12:45' },
-      { id: 'sun-club-1315-lecture', stageId: 'the-club', actId: null, titleKey: 'schedule.slot.lecture', start: '13:15', end: '14:30' },
-      { id: 'sun-club-1445-theater', stageId: 'the-club', actId: null, titleKey: 'schedule.slot.theater', start: '14:45', end: '16:15' },
-      { id: 'sun-club-1630-movie', stageId: 'the-club', actId: null, titleKey: 'schedule.slot.movie', start: '16:30', end: '18:15' },
-      { id: 'sun-club-1900-magic', stageId: 'the-club', actId: null, titleKey: 'schedule.slot.magicShow', start: '19:00', end: '21:15' },
+      { id: 'sun-club-1215-comedy', stageId: 'the-club', actId: null, titleKey: 'schedule.slot.comedy', start: '12:15', end: '13:30' },
+      { id: 'sun-club-1400-lecture', stageId: 'the-club', actId: null, titleKey: 'schedule.slot.lecture', start: '14:00', end: '15:15' },
+      { id: 'sun-club-1615-theater', stageId: 'the-club', actId: null, titleKey: 'schedule.slot.theater', start: '16:15', end: '18:00' },
+      { id: 'sun-club-1845-movie', stageId: 'the-club', actId: null, titleKey: 'schedule.slot.movie', start: '18:45', end: '21:00' },
+      { id: 'sun-club-2145-magic', stageId: 'the-club', actId: null, titleKey: 'schedule.slot.magicShow', start: '21:45', end: '23:15' },
     ],
     hanggar: [
       { id: 'sun-hang-1000-dj1', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj1', start: '10:00', end: '10:45' },
       { id: 'sun-hang-1045-dj2', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj2', start: '10:45', end: '12:15' },
-      { id: 'sun-hang-1245-dj3', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj3', start: '12:45', end: '14:15' },
-      { id: 'sun-hang-1415-dj4', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj4', start: '14:15', end: '15:45' },
-      { id: 'sun-hang-1545-dj5', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj5', start: '15:45', end: '17:15' },
-      { id: 'sun-hang-1715-dj6', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj6', start: '17:15', end: '18:45' },
-      { id: 'sun-hang-1845-dj7', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj7', start: '18:45', end: '21:00' },
-      { id: 'sun-hang-2115-dj8', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj8', start: '21:15', end: '23:45' },
+      { id: 'sun-hang-1315-dj3', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj3', start: '13:15', end: '14:45' },
+      { id: 'sun-hang-1445-dj4', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj4', start: '14:45', end: '16:15' },
+      { id: 'sun-hang-1715-dj5', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj5', start: '17:15', end: '18:45' },
+      { id: 'sun-hang-1915-dj6', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj6', start: '19:15', end: '20:45' },
+      { id: 'sun-hang-2115-dj7', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj7', start: '21:15', end: '22:45' },
+      { id: 'sun-hang-2300-dj8', stageId: 'hanggar', actId: null, titleKey: 'schedule.slot.dj8', start: '23:00', end: '23:45' },
     ],
   },
 };

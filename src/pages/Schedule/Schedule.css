@@ -65,17 +65,19 @@
 
 .schedule-axis__cell {
   border-left: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
-  font-size: 0.65rem;
+  font-size: 0.58rem;
   color: var(--color-muted);
-  padding: 0.2rem 0.1rem;
+  padding: 0.15rem 0.05rem;
   text-align: center;
   min-height: 2rem;
 }
 
 .schedule-axis__label {
+  display: block;
   font-weight: 700;
   color: var(--color-text);
   white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
 .schedule-row {

@@ -1,7 +1,15 @@
+import markerBar from '../assets/markers/marker_bar.svg?url';
 import markerEntrance from '../assets/markers/marker_entrance_exit.svg?url';
 import markerFirstAid from '../assets/markers/marker_first_aid.svg?url';
+import markerFood from '../assets/markers/marker_food.svg?url';
+import markerIceCream from '../assets/markers/marker_ice_cream.svg?url';
 import markerLocker from '../assets/markers/marker_locker.svg?url';
+import markerMerchandise from '../assets/markers/marker_merchandise.svg?url';
 import markerStage from '../assets/markers/marker_stage1_ponton.svg?url';
+import markerStage1 from '../assets/markers/marker_stage1_ponton.svg?url';
+import markerStage2 from '../assets/markers/marker_stage2_the_lake.svg?url';
+import markerStage3 from '../assets/markers/marker_stage3_the_club.svg?url';
+import markerStage4 from '../assets/markers/marker_stage4_hangar.svg?url';
 import markerToilet from '../assets/markers/marker_toilet.svg?url';
 
 /** Served from `public/map/` so the floorplan is not inlined into a JS chunk (bundle size + precache). */
@@ -29,7 +37,10 @@ const FALLBACK_SVG_RAW = `<?xml version="1.0" encoding="UTF-8"?>
 export function parseViewBoxFromSvgString(svgString) {
   const m = svgString.match(/viewBox="([^"]+)"/i);
   if (!m) return null;
-  const parts = m[1].trim().split(/[\s,]+/).map(Number);
+  const parts = m[1]
+    .trim()
+    .split(/[\s,]+/)
+    .map(Number);
   if (parts.length !== 4 || parts.some((n) => Number.isNaN(n))) return null;
   return { minX: parts[0], minY: parts[1], width: parts[2], height: parts[3] };
 }
@@ -105,8 +116,8 @@ export const STAGE_LOCATIONS = [
     number: 1,
     nameKey: 'schedule.stage.poton',
     typeKey: 'schedule.stage.poton.sub',
-    svgX: 520,
-    svgY: 520,
+    svgX: 496.9,
+    svgY: 849.15,
     description: {
       nl: 'Hoofdpodium aan het water — grote acts.',
       en: 'Main stage on the water — headline acts.',
@@ -117,8 +128,8 @@ export const STAGE_LOCATIONS = [
     number: 2,
     nameKey: 'schedule.stage.theLake',
     typeKey: 'schedule.stage.theLake.sub',
-    svgX: 1120,
-    svgY: 620,
+    svgX: 1256.98,
+    svgY: 615.25,
     description: {
       nl: 'Nieuw talent bij het meer.',
       en: 'New talent near the lake.',
@@ -129,8 +140,8 @@ export const STAGE_LOCATIONS = [
     number: 3,
     nameKey: 'schedule.stage.theClub',
     typeKey: 'schedule.stage.theClub.sub',
-    svgX: 1520,
-    svgY: 540,
+    svgX: 1614.31,
+    svgY: 528.68,
     description: {
       nl: 'Theater en comedy in het gebouw.',
       en: 'Theatre and comedy in the building.',
@@ -141,8 +152,8 @@ export const STAGE_LOCATIONS = [
     number: 4,
     nameKey: 'schedule.stage.hanggar',
     typeKey: 'schedule.stage.hanggar.sub',
-    svgX: 1980,
-    svgY: 480,
+    svgX: 2102.13,
+    svgY: 231.18,
     description: {
       nl: 'Non-stop house, techno en dance.',
       en: 'Non-stop house, techno and dance.',
@@ -203,7 +214,8 @@ export function getExternalMapsUrl(lat, lon, placeLabel) {
     return `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`;
   }
   const ua = navigator.userAgent;
-  const isTouchMac = navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
+  const isTouchMac =
+    navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
   const isIOS = /iPhone|iPad|iPod/i.test(ua) || isTouchMac;
 
   if (isIOS) {
@@ -225,12 +237,65 @@ export function geoToSvg(lat, lon) {
   const latC = Math.min(latMax, Math.max(latMin, lat));
   const lonC = Math.min(lonMax, Math.max(lonMin, lon));
   const svgX =
-    MAP_VIEWBOX.minX + ((lonC - lonMin) / (lonMax - lonMin)) * MAP_VIEWBOX.width;
+    MAP_VIEWBOX.minX +
+    ((lonC - lonMin) / (lonMax - lonMin)) * MAP_VIEWBOX.width;
   const svgY =
     MAP_VIEWBOX.minY +
     (1 - (latC - latMin) / (latMax - latMin)) * MAP_VIEWBOX.height;
   return { svgX, svgY };
 }
+
+/** Default POI icon size in SVG user units when a location has no `size`. */
+export const POI_MARKER_SIZE = 52.89;
+
+/** Detail POIs appear when scale exceeds fit scale × this factor. */
+export const DETAIL_ZOOM_FACTOR = 1.35;
+
+/** @typedef {'bar' | 'food' | 'toilet' | 'locker' | 'first_aid' | 'ice_cream' | 'merchandise' | 'entrance_exit'} PoiType */
+
+/**
+ * @typedef {{
+ *   iconUrl: string;
+ *   labelKey: string;
+ *   requireZoom: boolean;
+ * }} PoiMarkerMeta
+ */
+
+/** @type {Record<PoiType, PoiMarkerMeta>} */
+export const POI_MARKER_TYPES = {
+  bar: { iconUrl: markerBar, labelKey: 'map.poi.bar', requireZoom: true },
+  food: { iconUrl: markerFood, labelKey: 'map.poi.food', requireZoom: true },
+  toilet: {
+    iconUrl: markerToilet,
+    labelKey: 'map.poi.toilet',
+    requireZoom: true,
+  },
+  locker: {
+    iconUrl: markerLocker,
+    labelKey: 'map.poi.locker',
+    requireZoom: true,
+  },
+  first_aid: {
+    iconUrl: markerFirstAid,
+    labelKey: 'map.poi.firstAid',
+    requireZoom: true,
+  },
+  ice_cream: {
+    iconUrl: markerIceCream,
+    labelKey: 'map.poi.iceCream',
+    requireZoom: true,
+  },
+  merchandise: {
+    iconUrl: markerMerchandise,
+    labelKey: 'map.poi.merchandise',
+    requireZoom: true,
+  },
+  entrance_exit: {
+    iconUrl: markerEntrance,
+    labelKey: 'map.poi.entrance',
+    requireZoom: true,
+  },
+};
 
 /**
  * @typedef {{ type: string; iconUrl: string; labelKey: string }} LegendMarkerType
@@ -238,9 +303,32 @@ export function geoToSvg(lat, lon) {
 
 /** Legend rows (icon + i18n label). */
 export const LEGEND_MARKER_TYPES = /** @type {LegendMarkerType[]} */ ([
-  { type: 'stage', iconUrl: markerStage, labelKey: 'map.legend.stage' },
+  { type: 'stage-1', iconUrl: markerStage1, labelKey: 'map.legend.stage1' },
+  { type: 'stage-2', iconUrl: markerStage2, labelKey: 'map.legend.stage2' },
+  { type: 'stage-3', iconUrl: markerStage3, labelKey: 'map.legend.stage3' },
+  { type: 'stage-4', iconUrl: markerStage4, labelKey: 'map.legend.stage4' },
+  { type: 'bar', iconUrl: markerBar, labelKey: 'map.legend.bar' },
+  { type: 'food', iconUrl: markerFood, labelKey: 'map.legend.food' },
+  {
+    type: 'iceCream',
+    iconUrl: markerIceCream,
+    labelKey: 'map.legend.iceCream',
+  },
+  {
+    type: 'merchandise',
+    iconUrl: markerMerchandise,
+    labelKey: 'map.legend.merchandise',
+  },
   { type: 'toilet', iconUrl: markerToilet, labelKey: 'map.legend.toilet' },
-  { type: 'firstAid', iconUrl: markerFirstAid, labelKey: 'map.legend.firstAid' },
+  {
+    type: 'firstAid',
+    iconUrl: markerFirstAid,
+    labelKey: 'map.legend.firstAid',
+  },
   { type: 'locker', iconUrl: markerLocker, labelKey: 'map.legend.locker' },
-  { type: 'entrance', iconUrl: markerEntrance, labelKey: 'map.legend.entrance' },
+  {
+    type: 'entrance',
+    iconUrl: markerEntrance,
+    labelKey: 'map.legend.entrance',
+  },
 ]);

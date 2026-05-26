@@ -36,7 +36,8 @@ export const actsById = {
     imageSrc: arminImg,
     description: {
       en: "Five-time World's No. 1 DJ and trance icon. Euphoric, high-energy sets headlining festivals from Tomorrowland to Ultra.",
-      nl: "Five-time World's No. 1 DJ and trance icon. Euphoric, high-energy sets headlining festivals from Tomorrowland to Ultra.",
+      // nl: "Five-time World's No. 1 DJ and trance icon. Euphoric, high-energy sets headlining festivals from Tomorrowland to Ultra.",
+      nl: 'Armin van Buuren is een Nederlandse DJ en producer die bekend staat om zijn trance-sets. Hij is vijf keer wereldwijd nummer één en een van de meest invloedrijke figuren in de trance-scene. Zijn euphorische, hoog energieke sets zijn op grote festivals van Tomorrowland tot Ultra populair.',
     },
   },
   'martin-garrix': {

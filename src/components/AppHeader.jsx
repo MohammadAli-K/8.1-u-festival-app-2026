@@ -19,13 +19,7 @@ export function AppHeader({ currentPage }) {
         <div className="app-header__left">
           <img className="app-header__logo" src={logoSrc} alt="U Festival" height={32} />
         </div>
-        <div className="app-header__center">
-          {currentPage ? (
-            <span className="app-header__page ui-text" title={currentPage}>
-              {currentPage}
-            </span>
-          ) : null}
-        </div>
+   
         <div className="app-header__actions">
           <button
             type="button"

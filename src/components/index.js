@@ -7,6 +7,5 @@ export { Badge } from './Badge.jsx';
 export { NewsBlock } from './NewsBlock.jsx';
 export { Spinner } from './Spinner.jsx';
 export { BottomSheet } from './BottomSheet.jsx';
-export { NotificatieInstellingen } from './NotificatieInstellingen.jsx';
 export { PwaSystemBanners } from './PwaSystemBanners.jsx';
 export { MainLayout, SecondaryLayout } from './Layouts.jsx';

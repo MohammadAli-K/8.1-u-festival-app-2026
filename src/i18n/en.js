@@ -13,42 +13,62 @@ export default {
   'home.hero.logoAlt': 'U Festival logo',
   'home.section.newsAlerts': 'News & alerts',
   'home.section.upcoming': 'Coming up soon',
-  'home.upcoming.empty': 'No performances in the next 2 hours on a festival day.',
+  'home.upcoming.empty':
+    'No performances in the next 2 hours on a festival day.',
   'home.upcoming.cta': 'Open schedule',
   'home.badge.new': 'New',
   'home.empty': 'No news yet. Check back later for updates.',
   'info.title': 'Info',
-  'info.versionPrefix': 'Version',
   'info.section.general': 'General & contact',
   'info.general.intro':
     'The ❤️U Festival is for (new) students in the Utrecht region and complements the UIT.',
-  'info.general.address': 'Address: Strijkviertel, Utrecht',
-  'info.general.navigation': 'Navigation: Strijkviertelweg, Utrecht',
-  'info.general.date': 'Saturday 5 September 2026, 12:00–23:00',
+  'info.general.address.title': 'Address',
+  'info.general.address.location': 'Location: Strijkviertel, Utrecht',
+  'info.general.address.navigation':
+    'Navigation address: Strijkviertelweg, Utrecht',
+  'info.general.hours.title': 'Date & opening hours',
+  'info.general.hours.body': 'Saturday 5 September 2026 — 12:00 to 23:00',
   'info.section.travel': 'Getting there',
-  'info.travel.bike': '🚲 Bike: Large free bike parking all day',
-  'info.travel.car':
-    "🚗 Car: Park at P+R Papendorp, follow signs 'P online ticket'. No ticket? Buy from parking attendant (PIN ONLY). VOL=VOL.",
-  'info.travel.ov': '🚌 Public transport: Plan your trip via 9292.nl',
-  'info.travel.shuttle':
-    '🚌 Shuttle bus: From Utrecht Centraal (Mineurslaan). Runs 12:00–19:00 to the festival, from 21:00 back. Follow white signs with black arrows and ❤️U Festival.',
-  'info.travel.taxi':
-    '🚕 Taxi + Kiss & Ride: Navigate to Strijkviertel, De Meern (Utrecht). Follow signs "Kiss & Ride ❤️U Festival".',
-  'info.maps.open': 'Open in Maps',
+  'info.travel.bike.title': 'Bike',
+  'info.travel.bike.body':
+    'There is a large free bike parking area where you can leave your bike for the entire day.',
+  'info.travel.car.title': 'Car',
+  'info.travel.car.body':
+    "You can purchase a parking ticket. Parking is available at P+R Papendorp — follow the signs for 'P online ticket'. Didn't buy a ticket in advance? You can purchase one on site from the parking attendant (PIN ONLY). Please note: FULL=FULL",
+  'info.travel.ov.title': 'Public transport',
+  'info.travel.ov.body':
+    'Coming by public transport to Lief? Plan your trip via',
+  'info.travel.shuttle.title': 'Shuttle bus',
+  'info.travel.shuttle.p1':
+    "From Utrecht Centraal you can take our free shuttle bus to the festival grounds. You'll find the bus at the central station on Mineurslaan. Follow the white signs with black arrows and ' ❤️U Festival'.",
+  'info.travel.shuttle.p2':
+    'The bus runs between 12:00 and 19:00 towards the festival, and from 21:00 you can board again to return to the station.',
+  'info.travel.taxi.title': 'Taxi + Kiss & Ride',
+  'info.travel.taxi.body':
+    'Navigate to Strijkviertel, De Meern (Utrecht). Follow the "Kiss & Ride ❤️U Festival" signs once you are near the festival grounds.',
   'info.section.lockers': 'Lockers',
-  'info.lockers.body':
-    'Lockers are available on site (medium & large). You can open and close your locker all day. Online reservation not possible.',
+  'info.lockers.p1':
+    'Lockers are available on the festival grounds where you can safely store your belongings!',
+  'info.lockers.p2':
+    'They fit about 3 to 4 coats. Good to know: you can open and close your locker as often as you like throughout the day.',
+  'info.lockers.p3': 'It is not possible to reserve a locker online.',
   'info.section.faq': 'FAQ',
   'info.faq.q1': 'I use medication. What now?',
-  'info.faq.a1':
-    "Allowed in daily dose. Doctor's certificate required. First aid may hold your medication.",
+  'info.faq.a1.p1':
+    "You may bring medication in the maximum dose you need for one day. A doctor's certificate/medication passport is required.",
+  'info.faq.a1.p2':
+    'Security will review your documentation and check your medication. First aid may hold your medication (for example if it is dangerous in combination with alcohol) and you can only take it at first aid.',
   'info.faq.q2': 'Can I leave the festival grounds during the event?',
-  'info.faq.a2': 'No, this is not possible for safety reasons.',
+  'info.faq.a2':
+    'No, unfortunately that is not possible. To ensure the safety of all visitors, we cannot allow the festival grounds to be left during the event. We have no visibility of what a visitor does outside the grounds and in what condition they re-enter. No exceptions can be made. We have plenty of lounge areas, food stalls and bars to last the whole day.',
   'info.faq.q3': 'Are there lockers?',
-  'info.faq.a3': 'Yes! Medium and large lockers are available on site.',
+  'info.faq.a3':
+    'Yes, there are! You can rent medium and large lockers on site.',
   'info.section.golden': 'Golden-GLU',
-  'info.golden.body':
-    'GLU students are recognisable by a golden wristband. This gives them access to golden toilets and gold-marked bar ordering points without queuing.',
+  'info.golden.p1':
+    'GLU students have special privileges during the festival and are recognisable by a golden wristband.',
+  'info.golden.p2':
+    'With this golden wristband they can use the golden toilets and gold-marked bar ordering points without having to queue.',
   'schedule.title': 'Line-up and schedule',
   'schedule.saturday': 'Saturday',
   'schedule.sunday': 'Sunday',
@@ -58,10 +78,11 @@ export default {
   'schedule.tab.sundayShort': 'Sunday 6 Sep',
   'schedule.mySchedule': 'My schedule',
   'schedule.myScheduleHint': 'Favourites only',
-  'schedule.emptyMySchedule': 'No saved acts yet. Tap an act and add it with ❤️.',
-  'schedule.axisLabel': 'Programme from 10:00 to midnight',
+  'schedule.emptyMySchedule':
+    'No saved acts yet. Tap an act and add it with ❤️.',
+  'schedule.axisLabel': 'Programme from 10:00 to 23:45',
   'schedule.liveNow': 'Live now',
-  'schedule.stage.poton': 'Poton',
+  'schedule.stage.poton': 'Ponton',
   'schedule.stage.poton.sub': 'Main stage',
   'schedule.stage.theLake': 'The Lake',
   'schedule.stage.theLake.sub': 'New talent',
@@ -103,20 +124,38 @@ export default {
   'map.zoom.out': 'Zoom out on the map',
   'map.aria.viewport': 'Festival floor plan — drag to pan, pinch to zoom',
   'map.marker.openDetails': 'open details',
+  'map.popup.close': 'Close',
+  'map.popup.nextPrefix': 'Next:',
   'map.legend.title': 'Legend',
-  'map.legend.stage': 'Stages (numbered)',
+  'map.legend.stage1': '1 — Ponton',
+  'map.legend.stage2': '2 — The Lake',
+  'map.legend.stage3': '3 — The Club',
+  'map.legend.stage4': '4 — Hanggar',
+  'map.legend.bar': 'Bar',
+  'map.legend.food': 'Food',
+  'map.legend.iceCream': 'Ice cream',
+  'map.legend.merchandise': 'Merchandise',
   'map.legend.toilet': 'Toilets',
   'map.legend.firstAid': 'First aid',
   'map.legend.locker': 'Lockers',
   'map.legend.entrance': 'Entrance / exit',
+  'map.poi.bar': 'Bar',
+  'map.poi.food': 'Food',
+  'map.poi.iceCream': 'Ice cream',
+  'map.poi.merchandise': 'Merchandise',
+  'map.poi.toilet': 'Toilets',
+  'map.poi.firstAid': 'First aid',
+  'map.poi.locker': 'Lockers',
+  'map.poi.entrance': 'Entrance / exit',
   'map.sheet.nowOnStage': 'Now on stage:',
   'map.sheet.nextAct': 'Next act:',
-  'map.sheet.nothingScheduled': 'Nothing scheduled',
+  'map.sheet.nothingScheduled': 'No performances',
   'map.gps.denied': 'Location access denied.',
   'map.gps.unavailable': 'Location unavailable.',
   'map.gps.timeout': 'Location timed out.',
   'install.title': 'Install the app',
-  'install.body': 'Add U Festival to your home screen for quick offline access.',
+  'install.body':
+    'Add U Festival to your home screen for quick offline access.',
   'install.button': 'Install',
   'install.unavailable': 'Installation is not available on this device.',
   'install.scanHint':
@@ -168,7 +207,8 @@ export default {
   'interactie.photo.copied': 'Link copied to clipboard.',
   'interactie.photo.copyFailed': 'Copy is not available on this device.',
   'interactie.photo.shareTitle': '❤️U Festival check-in',
-  'interactie.photo.shareText': "I'm at ❤️U Festival — open the Interactie page in the app:",
+  'interactie.photo.shareText':
+    "I'm at ❤️U Festival — open the Interactie page in the app:",
   'interactie.photo.previewAlt': 'Preview of your photo check-in',
   'interactie.mic.permissionNl':
     'We meten drie seconden het omgevingsvolume. Er wordt géén audio opgenomen of bewaard — alleen een score op dit apparaat.',
@@ -178,7 +218,8 @@ export default {
   'interactie.mic.denied':
     'Microphone unavailable. You can skip this or enable the mic later in your browser settings.',
   'interactie.mic.retry': 'Try again',
-  'interactie.sfeer.intro': 'Measure how lively it is around you — local only, no recording.',
+  'interactie.sfeer.intro':
+    'Measure how lively it is around you — local only, no recording.',
   'interactie.sfeer.begin': 'Start vibe check',
   'interactie.sfeer.measuring': 'Listening… {n}s',
   'interactie.sfeer.resultLabel': 'Your vibe score',

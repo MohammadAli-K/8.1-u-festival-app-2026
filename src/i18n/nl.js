@@ -13,43 +13,64 @@ export default {
   'home.hero.logoAlt': 'U Festival-logo',
   'home.section.newsAlerts': 'Nieuws & meldingen',
   'home.section.upcoming': 'Straks op het programma',
-  'home.upcoming.empty': 'Geen optredens in de komende 2 uur op een festivaldag.',
+  'home.upcoming.empty':
+    'Geen optredens in de komende 2 uur op een festivaldag.',
   'home.upcoming.cta': 'Open schema',
   'home.badge.new': 'Nieuw',
-  'home.empty': 'Er is nog geen nieuws. Trek de pagina later nog eens open voor updates.',
+  'home.empty':
+    'Er is nog geen nieuws. Trek de pagina later nog eens open voor updates.',
   'info.title': 'Info',
-  'info.versionPrefix': 'Versie',
   'info.section.general': 'Algemeen & contact',
   'info.general.intro':
     'Het ❤️U Festival is voor (nieuwe) studenten in de regio Utrecht en is een aanvulling op UIT.',
-  'info.general.address': 'Adres: Strijkviertel, Utrecht',
-  'info.general.navigation': 'Navigatie: Strijkviertelweg, Utrecht',
-  'info.general.date': 'Zaterdag 5 september 2026, 12:00–23:00',
+  'info.general.address.title': 'Adres',
+  'info.general.address.location': 'Locatie: Strijkviertel, Utrecht',
+  'info.general.address.navigation':
+    'Navigatieadres: Strijkviertelweg, Utrecht',
+  'info.general.hours.title': 'Datum & Openingstijden',
+  'info.general.hours.body': 'Zaterdag 5 september 2026 - 12:00 tot 23:00 uur',
   'info.section.travel': 'Bereikbaarheid',
-  'info.travel.bike':
-    '🚲 Fiets: Grote gratis fietsenstalling de hele dag',
-  'info.travel.car':
-    "🚗 Auto: Parkeren op P+R Papendorp, volg borden 'P online ticket'. Geen ticket? Kopen bij parkeerwachter (PIN ONLY). VOL=VOL.",
-  'info.travel.ov': '🚌 OV: Plan je trip via 9292.nl',
-  'info.travel.shuttle':
-    '🚌 Shuttlebus: Vanaf Utrecht Centraal (Mineurslaan). Rijdt 12:00–19:00 naar festival, vanaf 21:00 terug. Volg witte bordjes met zwarte pijlen én ❤️U Festival.',
-  'info.travel.taxi':
-    '🚕 Taxi + Kiss & Ride: Navigeer naar Strijkviertel, De Meern (Utrecht). Volg borden "Kiss & Ride ❤️U Festival".',
-  'info.maps.open': 'Open in Maps',
+  'info.travel.bike.title': 'Fiets',
+  'info.travel.bike.body':
+    'Er is een grote gratis fietsenstalling aanwezig waar je jouw fiets de gehele dag kunt stallen.',
+  'info.travel.car.title': 'Auto',
+  'info.travel.car.body':
+    "Je kunt een parkingticket aanschaffen. Parkeren kan op P+R Papendorp, volg hiervoor de borden 'P online ticket'. Heb je geen ticket van te voren gekocht? Dan kun je bij de parkeerwachter op locatie een parkeerticket aanschaffen (PIN ONLY). Let wel op: VOL=VOL",
+  'info.travel.ov.title': 'OV',
+  'info.travel.ov.body':
+    'Kom je met het openbaar vervoer naar Lief? Plan dan je trip via',
+  'info.travel.shuttle.title': 'Shuttlebus',
+  'info.travel.shuttle.p1':
+    "Vanaf Utrecht Centraal kun je onze gratis shuttlebus richting het festivalterrein pakken. Je vindt deze bus op het centraal station aan de Mineurslaan. Volg de witte bordjes met zwarte pijlen én ' ❤️U Festival'.",
+  'info.travel.shuttle.p2':
+    'De bus rijdt tussen 12:00 uur & 19:00 uur richting het festival en vanaf 21:00 uur kun je weer instappen om richting het station te gaan.',
+  'info.travel.taxi.title': 'Taxi + Kiss & Ride',
+  'info.travel.taxi.body':
+    'Navigeer naar Strijkviertel, De Meern (Utrecht). Volg de borden "Kiss & Ride ❤️U Festival", zodra je in de buurt bent van het festivalterrein.',
   'info.section.lockers': 'Lockers',
-  'info.lockers.body':
-    'Op het festivalterrein zijn kluisjes aanwezig (medium & groot). Je kunt je kluisje de hele dag openen en sluiten. Niet mogelijk om online te reserveren.',
+  'info.lockers.p1':
+    'Op het festivalterrein zijn kluisjes aanwezig waar je je spullen veilig kunt opbergen!',
+  'info.lockers.p2':
+    'Hier passen 3 à 4 jassen in. Goed om te weten: je kunt je kluisje gedurende de hele dag openen en sluiten zo vaak je wilt.',
+  'info.lockers.p3':
+    'Het is niet mogelijk om online een kluisje te reserveren.',
   'info.section.faq': 'FAQ',
   'info.faq.q1': 'Ik gebruik medicatie. Wat nu?',
-  'info.faq.a1':
-    'Toegestaan in dagdosis. Doktersverklaring verplicht. EHBO kan medicijnen in bewaring nemen.',
+  'info.faq.a1.p1':
+    'Het is toegestaan om medicijnen mee te nemen in een dosis die je maximaal nodig hebt op 1 dag. Een doktersverklaring/medicatiepaspoort is noodzakelijk.',
+  'info.faq.a1.p2':
+    'De beveiliging zal jouw documentatie beoordelen en de medicijnen controleren. Het kan zijn dat de EHBO jouw medicijnen (bijvoorbeeld als deze gevaarlijk zijn i.c.m. alcohol) in bewaring neemt en je deze enkel kan innemen bij de EHBO.',
   'info.faq.q2': 'Mag ik het festivalterrein tussentijds verlaten?',
-  'info.faq.a2': 'Nee, dit is niet mogelijk om veiligheidsredenen.',
+  'info.faq.a2':
+    'Nee, helaas is dat niet mogelijk. Om de veiligheid van alle bezoekers te kunnen waarborgen, kunnen we het niet toestaan dat het festivalterrein tussentijds verlaten wordt. Wij hebben namelijk geen zicht op hetgeen wat een bezoeker buiten het festivalterrein doet en ik welke staat deze het terrein weer betreedt. Hier kunnen dan ook geen uitzonderingen voor gemaakt worden. Wij hebben genoeg loungeplekken, foodstands & barren om het een hele dag uit te kunnen houden.',
   'info.faq.q3': 'Zijn er lockers?',
-  'info.faq.a3': 'Ja! Medium en grote lockers zijn beschikbaar op het terrein.',
+  'info.faq.a3':
+    'Yes, deze zijn er! Op het terrein kun je medium & grote lockers huren.',
   'info.section.golden': 'Golden-GLU',
-  'info.golden.body':
-    'Studenten van het GLU zijn herkenbaar aan een gouden armbandje. Hiermee kunnen ze gebruik maken van de gouden toiletten en met goud gemarkeerde bestelpunten zonder in de rij te staan.',
+  'info.golden.p1':
+    'Studenten van het GLU hebben tijdens het festival speciale privileges en zijn herkenbaar aan een gouden armbandje.',
+  'info.golden.p2':
+    'Met dit gouden armbandje kunnen ze tijdens het festival gebruik maken van de gouden toiletten en met goud gemarkeerde bestelpunten aan de bars zonder in een rij te hoeven staan.',
   'schedule.title': 'Line-up en schema',
   'schedule.saturday': 'Zaterdag',
   'schedule.sunday': 'Zondag',
@@ -59,10 +80,11 @@ export default {
   'schedule.tab.sundayShort': 'Zondag 6 sep',
   'schedule.mySchedule': 'Mijn programma',
   'schedule.myScheduleHint': 'Alleen favorieten',
-  'schedule.emptyMySchedule': 'Nog geen favorieten. Tik op een optreden en voeg toe met ❤️.',
-  'schedule.axisLabel': 'Programma van 10:00 tot middernacht',
+  'schedule.emptyMySchedule':
+    'Nog geen favorieten. Tik op een optreden en voeg toe met ❤️.',
+  'schedule.axisLabel': 'Programma van 10:00 tot 23:45',
   'schedule.liveNow': 'Nu live',
-  'schedule.stage.poton': 'Poton',
+  'schedule.stage.poton': 'Ponton',
   'schedule.stage.poton.sub': 'Hoofdpodium',
   'schedule.stage.theLake': 'The Lake',
   'schedule.stage.theLake.sub': 'Nieuw talent',
@@ -102,22 +124,41 @@ export default {
   'map.loadingMap': 'Plattegrond laden…',
   'map.zoom.in': 'Inzoomen op de kaart',
   'map.zoom.out': 'Uitzoomen op de kaart',
-  'map.aria.viewport': 'Festivalplattegrond, sleep om te verschuiven, knijp om te zoomen',
+  'map.aria.viewport':
+    'Festivalplattegrond, sleep om te verschuiven, knijp om te zoomen',
   'map.marker.openDetails': 'details openen',
+  'map.popup.close': 'Sluiten',
+  'map.popup.nextPrefix': 'Daarna:',
   'map.legend.title': 'Legenda',
-  'map.legend.stage': 'Podia (genummerd)',
+  'map.legend.stage1': '1 — Ponton',
+  'map.legend.stage2': '2 — The Lake',
+  'map.legend.stage3': '3 — The Club',
+  'map.legend.stage4': '4 — Hanggar',
+  'map.legend.bar': 'Bar',
+  'map.legend.food': 'Eten',
+  'map.legend.iceCream': 'IJs',
+  'map.legend.merchandise': 'Merchandise',
   'map.legend.toilet': 'Toiletten',
   'map.legend.firstAid': 'EHBO',
   'map.legend.locker': 'Lockers',
   'map.legend.entrance': 'Ingang / uitgang',
+  'map.poi.bar': 'Bar',
+  'map.poi.food': 'Eten',
+  'map.poi.iceCream': 'IJs',
+  'map.poi.merchandise': 'Merchandise',
+  'map.poi.toilet': 'Toiletten',
+  'map.poi.firstAid': 'EHBO',
+  'map.poi.locker': 'Lockers',
+  'map.poi.entrance': 'Ingang / uitgang',
   'map.sheet.nowOnStage': 'Nu op dit podium:',
   'map.sheet.nextAct': 'Volgende act:',
-  'map.sheet.nothingScheduled': 'Niets gepland',
+  'map.sheet.nothingScheduled': 'Geen optredens',
   'map.gps.denied': 'Locatie toegang geweigerd.',
   'map.gps.unavailable': 'Locatie niet beschikbaar.',
   'map.gps.timeout': 'Locatie time-out.',
   'install.title': 'Installeer de app',
-  'install.body': 'Voeg U Festival toe aan je startscherm voor snelle offline toegang.',
+  'install.body':
+    'Voeg U Festival toe aan je startscherm voor snelle offline toegang.',
   'install.button': 'Installeren',
   'install.unavailable': 'Installatie is op dit apparaat niet beschikbaar.',
   'install.scanHint':
@@ -133,7 +174,8 @@ export default {
   'notifications.permissionDenied':
     'Meldingen zijn geblokkeerd in je browser. Schakel ze in via de site-instellingen.',
   'notifications.demo': 'Stuur testmelding',
-  'notifications.demoNeedPermission': 'Schakel meldingen in om een test te sturen.',
+  'notifications.demoNeedPermission':
+    'Schakel meldingen in om een test te sturen.',
   'home.notifications.open': 'Notificatie-instellingen openen',
   'pwa.banners.aria': 'Verbinding en installatie',
   'notifications.demoTitle': '❤️U Festival',
@@ -169,7 +211,8 @@ export default {
   'interactie.photo.copied': 'Link gekopieerd naar het klembord.',
   'interactie.photo.copyFailed': 'Kopiëren lukt niet op dit apparaat.',
   'interactie.photo.shareTitle': '❤️U Festival check-in',
-  'interactie.photo.shareText': 'Ik ben bij ❤️U Festival — Interactie in de app:',
+  'interactie.photo.shareText':
+    'Ik ben bij ❤️U Festival — Interactie in de app:',
   'interactie.photo.previewAlt': 'Voorbeeld van je fotocheck-in',
   'interactie.mic.permissionNl':
     'We meten drie seconden het omgevingsvolume. Er wordt géén audio opgenomen of bewaard — alleen een score op dit apparaat.',
@@ -179,7 +222,8 @@ export default {
   'interactie.mic.denied':
     'Microfoon niet beschikbaar. Je kunt dit overslaan of microfoon later inschakelen in je browserinstellingen.',
   'interactie.mic.retry': 'Opnieuw proberen',
-  'interactie.sfeer.intro': 'Meet hoe levendig het om je heen is — puur lokaal, zonder opname.',
+  'interactie.sfeer.intro':
+    'Meet hoe levendig het om je heen is — puur lokaal, zonder opname.',
   'interactie.sfeer.begin': 'Start sfeercheck',
   'interactie.sfeer.measuring': 'Luisteren… {n}s',
   'interactie.sfeer.resultLabel': 'Jouw vibe-score',

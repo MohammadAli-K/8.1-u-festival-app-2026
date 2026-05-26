@@ -33,11 +33,12 @@ export function MainLayout() {
   const { pathname } = useLocation();
   const { t } = useLanguage();
   const currentPage = t(titleKeyForPath(pathname));
+  const isMapPage = pathname === '/map';
 
   return (
     <div className="app-shell app-shell--main">
       <AppHeader currentPage={currentPage} />
-      <main className="app-main">
+      <main className={`app-main${isMapPage ? ' app-main--map' : ''}`}>
         <div className="page-transition" key={pathname}>
           <Outlet />
         </div>

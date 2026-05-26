@@ -7,8 +7,6 @@ import { useSchedule } from '../../hooks/index.js';
 import { getEffectiveNow, getNextActStartingWithin, stages } from '../../data/schedule.js';
 import { NewsBlock } from '../../components/NewsBlock.jsx';
 import { Spinner } from '../../components/Spinner.jsx';
-import { BottomSheet } from '../../components/BottomSheet.jsx';
-import { NotificatieInstellingen } from '../../components/NotificatieInstellingen.jsx';
 
 const LOGO_HEART_TAP_MS = 2400;
 const TWO_HOURS_MS = 2 * 60 * 60 * 1000;
@@ -41,7 +39,6 @@ export default function HomePage() {
   const { t, language } = useLanguage();
   const { items, loading, markRead, isUnread } = useNews();
   const { loading: scheduleLoading, error: scheduleError, allBlocks } = useSchedule();
-  const [notifOpen, setNotifOpen] = useState(false);
   const [now, setNow] = useState(() => getEffectiveNow());
   const heartTapsRef = useRef({ count: 0, lastTs: 0 });
 
@@ -80,16 +77,6 @@ export default function HomePage() {
   return (
     <div className="page-home">
       <header className="home-hero">
-        <button
-          type="button"
-          className="home-hero__notif-btn tap-scale"
-          onClick={() => setNotifOpen(true)}
-          aria-label={t('home.notifications.open')}
-        >
-          <span className="material-symbols-outlined" aria-hidden>
-            settings
-          </span>
-        </button>
         <div className="home-hero__title-wrap">
           <h1 className="home-hero__name">{t('home.hero.festivalName')}</h1>
           <button
@@ -155,9 +142,6 @@ export default function HomePage() {
           ))
         )}
       </section>
-      <BottomSheet open={notifOpen} onClose={() => setNotifOpen(false)} title={t('notifications.settingsTitle')}>
-        <NotificatieInstellingen />
-      </BottomSheet>
     </div>
   );
 }

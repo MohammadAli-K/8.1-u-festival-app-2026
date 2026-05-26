@@ -162,14 +162,10 @@ export default function SchedulePage() {
                   const mins = GRID_START_MINUTES + i * 15;
                   const hh = Math.floor(mins / 60);
                   const mm = mins % 60;
-                  const showLabel = mm === 0 || i === NUM_QUARTER_SLOTS - 1;
-                  const label =
-                    i === NUM_QUARTER_SLOTS - 1
-                      ? `${String(hh).padStart(2, '0')}:${String(mm).padStart(2, '0')}`
-                      : `${String(hh).padStart(2, '0')}:00`;
+                  const label = `${String(hh).padStart(2, '0')}:${String(mm).padStart(2, '0')}`;
                   return (
                     <div key={i} className="schedule-axis__cell">
-                      {showLabel ? <span className="schedule-axis__label">{label}</span> : null}
+                      <span className="schedule-axis__label">{label}</span>
                     </div>
                   );
                 })}

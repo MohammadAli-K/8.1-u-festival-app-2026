@@ -1,11 +1,10 @@
 .page-map {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
   flex: 1;
   min-height: 0;
-  margin: -0.25rem -1rem 0;
-  width: calc(100% + 2rem);
+  width: 100%;
+  height: 100%;
 }
 
 .page-map__title {
@@ -18,24 +17,44 @@
 
 .page-map__viewport {
   position: relative;
-  flex: 1;
-  min-height: 14rem;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
   touch-action: none;
-  border-radius: var(--color-radius);
   overflow: hidden;
-  border: 1px solid var(--color-border);
   background: color-mix(in srgb, var(--color-secondary) 8%, var(--color-bg));
 }
 
 .page-map__svg {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
+  touch-action: none;
   user-select: none;
+}
+
+.page-map__controls,
+.page-map__controls *,
+.page-map__gps-banner,
+.page-map__legend-toggle {
+  touch-action: none;
 }
 
 .page-map__floorplan {
   pointer-events: none;
+}
+
+.page-map__poi {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.page-map__poi--visible {
+  opacity: 1;
 }
 
 .page-map__controls {
@@ -86,6 +105,10 @@
   cursor: pointer;
 }
 
+.page-map__marker:active .page-map__marker-dot {
+  fill: #b8252e;
+}
+
 .page-map__marker:focus {
   outline: none;
 }
@@ -125,11 +148,18 @@
 }
 
 .page-map__legend {
-  margin: 0 1rem 0.25rem;
+  position: absolute;
+  left: 0.75rem;
+  right: 90rem;
+  bottom: 0.5rem;
+  z-index: 3;
+  margin: 0;
   border: 1px solid var(--color-border);
   border-radius: var(--color-radius);
-  background: var(--color-surface);
+  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+  backdrop-filter: blur(8px);
   overflow: hidden;
+  box-shadow: 0 2px 10px color-mix(in srgb, var(--color-text) 14%, transparent);
 }
 
 .page-map__legend-toggle {
@@ -170,6 +200,9 @@
 
 .page-map__legend--open .page-map__legend-body {
   display: flex;
+  max-height: min(42vh, 18rem);
+  overflow-y: auto;
+  touch-action: pan-y;
 }
 
 .page-map__legend-row {
@@ -185,6 +218,124 @@
   height: 2rem;
   flex-shrink: 0;
   object-fit: contain;
+}
+
+.page-map__popup {
+  position: absolute;
+  z-index: 4;
+  width: min(17.5rem, calc(100% - 1rem));
+  padding: 0.65rem 0.75rem 0.75rem;
+  border-radius: var(--color-radius);
+  border: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-surface) 96%, transparent);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--color-text) 18%, transparent);
+  pointer-events: auto;
+}
+
+.page-map__popup-close {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: none;
+  border-radius: var(--color-radius);
+  background: transparent;
+  color: var(--color-muted);
+  cursor: pointer;
+}
+
+.page-map__popup-close:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.page-map__popup-stage {
+  margin: 0 2rem 0.15rem 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  line-height: 1.25;
+}
+
+.page-map__popup-type {
+  margin: 0 0 0.5rem;
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  line-height: 1.35;
+}
+
+.page-map__popup-img {
+  width: 100%;
+  max-height: 5.5rem;
+  object-fit: cover;
+  border-radius: var(--color-radius);
+  margin-bottom: 0.45rem;
+}
+
+.page-map__popup-live {
+  margin: 0 0 0.2rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-accent);
+}
+
+.page-map__popup-title {
+  margin: 0 0 0.15rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+.page-map__popup-time {
+  margin: 0 0 0.4rem;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.page-map__popup-desc {
+  margin: 0 0 0.45rem;
+  font-size: 0.82rem;
+  color: var(--color-text);
+  line-height: 1.4;
+}
+
+.page-map__popup-youtube {
+  width: 100%;
+  margin-bottom: 0.35rem;
+}
+
+.page-map__popup-muted {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+.page-map__popup-next {
+  margin: 0.35rem 0 0;
+  padding-top: 0.35rem;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.82rem;
+  color: var(--color-text);
+  line-height: 1.35;
+}
+
+.page-map__popup-next-label {
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.page-map__popup-next-time {
+  color: var(--color-muted);
 }
 
 .page-map__sheet-stage {
