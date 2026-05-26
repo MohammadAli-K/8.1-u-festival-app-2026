@@ -36,6 +36,10 @@ html[data-theme='dark'] {
 
 html {
   height: 100%;
+  touch-action: pan-x pan-y;
+  overscroll-behavior: none;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 *,
@@ -52,6 +56,8 @@ body {
   -webkit-font-smoothing: antialiased;
   background: var(--color-bg);
   color: var(--color-text);
+  touch-action: pan-x pan-y;
+  overscroll-behavior: none;
 }
 
 h1,
@@ -77,6 +83,7 @@ li {
 
 #root {
   min-height: 100%;
+  touch-action: pan-x pan-y;
 }
 
 /* Material Symbols baseline */
