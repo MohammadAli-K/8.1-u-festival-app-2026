@@ -429,14 +429,16 @@ export default function MapPage() {
   }, []);
 
   useEffect(() => {
+    // `floorplanHtml` gates rendering of `.page-map__viewport`; depend on it so
+    // the listeners attach once the viewport actually mounts.
     const el = viewportRef.current;
-    if (!el) return undefined;
+    if (!el || !floorplanHtml) return undefined;
 
     const onWheel = (/** @type {WheelEvent} */ e) => {
       e.preventDefault();
       const svg = svgRef.current;
       if (!svg) return;
-      const factor = e.deltaY > 0 ? 0.92 : 1.08;
+      const factor = e.deltaY > 0 ? 0.96 : 1.04;
       const next = zoomAtClientPoint(
         svg,
         e.clientX,
@@ -473,7 +475,13 @@ export default function MapPage() {
       el.removeEventListener('touchend', handleTouchEnd, touchOpts);
       el.removeEventListener('touchcancel', handleTouchEnd, touchOpts);
     };
-  }, [applyPanZoom, handleTouchStart, handleTouchMove, handleTouchEnd]);
+  }, [
+    floorplanHtml,
+    applyPanZoom,
+    handleTouchStart,
+    handleTouchMove,
+    handleTouchEnd,
+  ]);
 
   useEffect(() => {
     const svg = svgRef.current;
