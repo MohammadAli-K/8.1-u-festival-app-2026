@@ -169,6 +169,32 @@ function zoomAtClientPoint(svg, clientX, clientY, factor, current) {
 }
 
 /**
+ * Pinch-zoom: keep a fixed SVG anchor under the moving focal point.
+ * @param {number} anchorX fixed anchor in SVG space (pinch start midpoint)
+ * @param {number} anchorY
+ * @param {number} focalX current focal in SVG space (pinch move midpoint)
+ * @param {number} focalY
+ */
+function panZoomFromPinchAnchor(
+  startTx,
+  startTy,
+  startScale,
+  anchorX,
+  anchorY,
+  focalX,
+  focalY,
+  nextScale,
+) {
+  const Wx = (anchorX - startTx) / startScale;
+  const Wy = (anchorY - startTy) / startScale;
+  return {
+    tx: focalX - Wx * nextScale,
+    ty: focalY - Wy * nextScale,
+    scale: nextScale,
+  };
+}
+
+/**
  * @param {Date} start
  * @param {Date} end
  * @param {'nl' | 'en'} language
@@ -231,8 +257,8 @@ export default function MapPage() {
     startScale: 1,
     startTx: 0,
     startTy: 0,
-    startMidClientX: 0,
-    startMidClientY: 0,
+    /** @type {{ x: number; y: number } | null} */
+    mid0: null,
   });
 
   const markerTapRef = useRef({
@@ -303,14 +329,14 @@ export default function MapPage() {
 
     if (e.touches.length === 2) {
       const { dist, midClientX, midClientY } = touchPinchMetrics(e.touches);
+      const mid0 = clientToSvgPoint(svg, midClientX, midClientY);
       pinchRef.current = {
         active: true,
         startDist: dist,
         startScale: curS,
         startTx: curTx,
         startTy: curTy,
-        startMidClientX: midClientX,
-        startMidClientY: midClientY,
+        mid0,
       };
       panRef.current.pointerId = null;
       return;
@@ -339,8 +365,10 @@ export default function MapPage() {
       if (!svg) return;
 
       if (pinchRef.current.active && e.touches.length === 2) {
-        const { dist } = touchPinchMetrics(e.touches);
+        const { dist, midClientX, midClientY } = touchPinchMetrics(e.touches);
+        const focal = clientToSvgPoint(svg, midClientX, midClientY);
         const pr = pinchRef.current;
+        if (!pr.mid0) return;
         const { minScale } = clampPanZoom(
           pr.startTx,
           pr.startTy,
@@ -351,16 +379,15 @@ export default function MapPage() {
           MAX_SCALE,
           Math.max(minScale, pr.startScale * (dist / pr.startDist)),
         );
-        const next = zoomAtClientPoint(
-          svg,
-          pr.startMidClientX,
-          pr.startMidClientY,
-          nextScale / pr.startScale,
-          {
-            tx: pr.startTx,
-            ty: pr.startTy,
-            scale: pr.startScale,
-          },
+        const next = panZoomFromPinchAnchor(
+          pr.startTx,
+          pr.startTy,
+          pr.startScale,
+          pr.mid0.x,
+          pr.mid0.y,
+          focal.x,
+          focal.y,
+          nextScale,
         );
         applyPanZoom(next.tx, next.ty, next.scale);
         return;
@@ -406,14 +433,16 @@ export default function MapPage() {
   }, []);
 
   useEffect(() => {
+    // `floorplanHtml` gates rendering of `.page-map__viewport`; depend on it so
+    // the listeners attach once the viewport actually mounts.
     const el = viewportRef.current;
-    if (!el) return undefined;
+    if (!el || !floorplanHtml) return undefined;
 
     const onWheel = (/** @type {WheelEvent} */ e) => {
       e.preventDefault();
       const svg = svgRef.current;
       if (!svg) return;
-      const factor = e.deltaY > 0 ? 0.92 : 1.08;
+      const factor = e.deltaY > 0 ? 0.96 : 1.04;
       const next = zoomAtClientPoint(
         svg,
         e.clientX,
@@ -450,7 +479,13 @@ export default function MapPage() {
       el.removeEventListener('touchend', handleTouchEnd, touchOpts);
       el.removeEventListener('touchcancel', handleTouchEnd, touchOpts);
     };
-  }, [applyPanZoom, handleTouchStart, handleTouchMove, handleTouchEnd]);
+  }, [
+    floorplanHtml,
+    applyPanZoom,
+    handleTouchStart,
+    handleTouchMove,
+    handleTouchEnd,
+  ]);
 
   useEffect(() => {
     const svg = svgRef.current;
