@@ -22,10 +22,6 @@ import {
   STAGE_LOCATIONS,
 } from '../../data/map.js';
 import { POI_LOCATIONS } from '../../data/mapPoiLocations.js';
-import potonStage from '../../assets/stages/poton.svg';
-import theLakeStage from '../../assets/stages/the-lake.svg';
-import theClubStage from '../../assets/stages/the-club.svg';
-import hanggarStage from '../../assets/stages/hanggar.svg';
 import './Map.css';
 
 const MAX_SCALE = 4;
