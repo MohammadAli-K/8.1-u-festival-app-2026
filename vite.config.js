@@ -22,6 +22,10 @@ export default defineConfig(({ mode }) => ({
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: null,
+      devOptions: {
+        enabled: true,
+        type: 'module',
+      },
       includeAssets: ['icons/*.webp', 'map/*.svg', 'u-festival-sw-extras.js'],
       manifest: {
         id: '/',

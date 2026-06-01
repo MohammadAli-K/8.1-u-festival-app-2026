@@ -2,6 +2,27 @@
 <html lang="nl">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      // Capture `beforeinstallprompt` as early as possible — it can fire before
+      // React mounts, so we stash it in a tiny store that the app reads later.
+      (function () {
+        var store = { prompt: null, listeners: [] };
+        window.__pwaInstall = store;
+        window.addEventListener('beforeinstallprompt', function (e) {
+          e.preventDefault();
+          store.prompt = e;
+          store.listeners.slice().forEach(function (cb) {
+            cb(e);
+          });
+        });
+        window.addEventListener('appinstalled', function () {
+          store.prompt = null;
+          store.listeners.slice().forEach(function (cb) {
+            cb(null);
+          });
+        });
+      })();
+    </script>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
