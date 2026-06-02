@@ -169,6 +169,10 @@ export default {
   'install.banner.install': 'Installeer',
   'install.banner.dismiss': 'Niet nu',
   'install.banner.success': 'App geïnstalleerd — veel plezier op het festival!',
+  'install.banner.iosHint':
+    'Installeer de ❤️U app: tik op het deel-icoon en kies ‘Zet op beginscherm’.',
+  'install.banner.androidHint':
+    'Installeer de ❤️U app: open het browsermenu en kies ‘App installeren’.',
   'notifications.settingsTitle': 'Notificatie-instellingen',
   'notifications.toggleLabel': 'Meldingen voor favorieten en updates',
   'notifications.permissionDenied':

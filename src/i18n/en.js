@@ -166,6 +166,10 @@ export default {
   'install.banner.install': 'Install',
   'install.banner.dismiss': 'Not now',
   'install.banner.success': 'App installed — enjoy the festival!',
+  'install.banner.iosHint':
+    'Install the ❤️U app: tap the Share icon and choose ‘Add to Home Screen’.',
+  'install.banner.androidHint':
+    'Install the ❤️U app: open the browser menu and choose ‘Install app’.',
   'notifications.settingsTitle': 'Notification settings',
   'notifications.toggleLabel': 'Notifications for favourites and updates',
   'notifications.permissionDenied':

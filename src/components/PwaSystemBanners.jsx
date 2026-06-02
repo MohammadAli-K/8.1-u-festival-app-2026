@@ -16,6 +16,23 @@ function isStandalonePwa() {
   );
 }
 
+/**
+ * Coarse platform detection for the manual install hint shown when the native
+ * `beforeinstallprompt` event is unavailable (e.g. iOS Safari, Firefox Android).
+ * @returns {'ios' | 'android' | 'other'}
+ */
+function getPlatform() {
+  if (typeof navigator === 'undefined') return 'other';
+  const ua = navigator.userAgent || '';
+  const isIOS =
+    /iPad|iPhone|iPod/.test(ua) ||
+    // iPadOS 13+ reports itself as a Mac, so fall back to touch detection.
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if (isIOS) return 'ios';
+  if (/Android/.test(ua)) return 'android';
+  return 'other';
+}
+
 export function PwaSystemBanners() {
   const { pathname } = useLocation();
   const { t } = useLanguage();
@@ -31,6 +48,7 @@ export function PwaSystemBanners() {
   const stackRef = useRef(/** @type {HTMLDivElement | null} */ (null));
 
   const isMainShell = MAIN_SHELL_PATHS.has(pathname);
+  const platform = getPlatform();
 
   useEffect(() => {
     const onOnline = () => setOnline(true);
@@ -67,14 +85,19 @@ export function PwaSystemBanners() {
     return () => window.clearTimeout(id);
   }, [isMainShell, installDismissed]);
 
-  const showInstallBanner =
-    isMainShell &&
-    !isStandalonePwa() &&
-    !installDismissed &&
-    installAfterDelay &&
-    Boolean(deferredPrompt);
+  const installEligible =
+    isMainShell && !isStandalonePwa() && !installDismissed && installAfterDelay;
 
-  const hasContent = !online || showInstallBanner || showSuccess;
+  const showInstallBanner = installEligible && Boolean(deferredPrompt);
+
+  // Fallback for platforms without a native prompt (iOS Safari, Firefox/Samsung
+  // on Android, etc.): show manual "add to home screen" instructions instead.
+  const showManualHint =
+    installEligible && !deferredPrompt && (platform === 'ios' || platform === 'android');
+
+  const manualHintText = platform === 'ios' ? t('install.banner.iosHint') : t('install.banner.androidHint');
+
+  const hasContent = !online || showInstallBanner || showManualHint || showSuccess;
 
   useLayoutEffect(() => {
     const root = document.documentElement;
@@ -100,7 +123,7 @@ export function PwaSystemBanners() {
       root.style.setProperty('--pwa-banner-stack', '0px');
       root.removeAttribute('data-pwa-banners');
     };
-  }, [hasContent, online, showInstallBanner, showSuccess]);
+  }, [hasContent, online, showInstallBanner, showManualHint, showSuccess]);
 
   const dismissInstall = () => {
     sessionStorage.setItem(INSTALL_DISMISS_KEY, '1');
@@ -125,6 +148,16 @@ export function PwaSystemBanners() {
             >
               {t('install.banner.install')}
             </button>
+            <button type="button" className="pwa-system-banners__btn tap-scale" onClick={dismissInstall}>
+              {t('install.banner.dismiss')}
+            </button>
+          </div>
+        </div>
+      ) : null}
+      {showManualHint ? (
+        <div className="pwa-system-banners__strip pwa-system-banners__strip--install">
+          <span>{manualHintText}</span>
+          <div className="pwa-system-banners__actions">
             <button type="button" className="pwa-system-banners__btn tap-scale" onClick={dismissInstall}>
               {t('install.banner.dismiss')}
             </button>
