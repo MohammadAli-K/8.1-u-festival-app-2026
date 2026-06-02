@@ -21,7 +21,11 @@
   min-height: 0;
   width: 100%;
   height: 100%;
-  touch-action: none;
+  /* `pan-y` (i.p.v. `none`) zodat de browser binnen scrollbare overlay-children
+     (zoals de legenda-body met `touch-action: pan-y`) wél verticaal mag scrollen.
+     De `<svg>` zelf zet `touch-action: none` zodat map-pan/-pinch volledig in JS
+     wordt afgehandeld. */
+  touch-action: pan-y;
   overflow: hidden;
   background: color-mix(in srgb, var(--color-secondary) 8%, var(--color-bg));
 }

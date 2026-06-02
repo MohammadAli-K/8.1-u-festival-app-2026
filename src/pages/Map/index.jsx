@@ -366,11 +366,15 @@ export default function MapPage() {
 
   const handleTouchMove = useCallback(
     (/** @type {TouchEvent} */ e) => {
-      e.preventDefault();
+      // Belangrijk: we registreren deze handler in capture-fase op de viewport, zodat
+      // we hem vóór doorgifte aan kinderen krijgen. Daarom mogen we `preventDefault`
+      // pas aanroepen wanneer we daadwerkelijk een map-pan of -pinch verwerken —
+      // anders cancelen we de native scroll binnen de legenda-body.
       const svg = svgRef.current;
       if (!svg) return;
 
       if (pinchRef.current.active && e.touches.length === 2) {
+        e.preventDefault();
         const { dist, midClientX, midClientY } = touchPinchMetrics(e.touches);
         const focal = clientToSvgPoint(svg, midClientX, midClientY);
         const pr = pinchRef.current;
@@ -404,6 +408,7 @@ export default function MapPage() {
         e.touches.length === 1 &&
         panRef.current.pointerId === -1
       ) {
+        e.preventDefault();
         const T = e.touches[0];
         const P = clientToSvgPoint(svg, T.clientX, T.clientY);
         const p = panRef.current;
