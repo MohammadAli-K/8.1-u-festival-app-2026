@@ -239,6 +239,11 @@ export default function MapPage() {
   const panZoomRef = useRef({ tx: 0, ty: 0, scale: 1 });
   panZoomRef.current = { tx, ty, scale };
 
+  // Read inside imperative event handlers (wheel/touch) so the closures
+  // captured by useCallback don't go stale when the legend toggles.
+  const legendOpenRef = useRef(legendOpen);
+  legendOpenRef.current = legendOpen;
+
   const panRef = useRef({
     pointerId: /** @type {number | null} */ (null),
     startTx: 0,
@@ -324,6 +329,11 @@ export default function MapPage() {
     const { tx: curTx, ty: curTy, scale: curS } = panZoomRef.current;
 
     if (e.touches.length === 2) {
+      if (legendOpenRef.current) {
+        pinchRef.current.active = false;
+        panRef.current.pointerId = null;
+        return;
+      }
       const { dist, midClientX, midClientY } = touchPinchMetrics(e.touches);
       const mid0 = clientToSvgPoint(svg, midClientX, midClientY);
       pinchRef.current = {
@@ -435,6 +445,7 @@ export default function MapPage() {
     if (!el || !floorplanHtml) return undefined;
 
     const onWheel = (/** @type {WheelEvent} */ e) => {
+      if (legendOpenRef.current) return;
       e.preventDefault();
       const svg = svgRef.current;
       if (!svg) return;
