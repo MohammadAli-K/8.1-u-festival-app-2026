@@ -8,8 +8,8 @@ function showFromPayload(data) {
   const body = (data && data.body) || '';
   return self.registration.showNotification(title, {
     body,
-    icon: '/icons/logo-black-192.webp',
-    badge: '/icons/logo-black-192.webp',
+    icon: '/icons/logo-white-192.webp',
+    badge: '/icons/logo-white-192.webp',
   });
 }
 

@@ -11,7 +11,7 @@ React + Vite progressive web app for **❤️U Festival** (Utrecht, 5–6 Septem
 | **`npm run build`** | Production build → `dist/`, emits `manifest.webmanifest` + `sw.js`, then verifies every `dist/assets/*.js` chunk is ≤ 150 KiB |
 | **`npm run preview`** | Serve `dist/` locally over HTTP — **use this for PWA install, offline, and Lighthouse** |
 | **`npm run analyze`** | Same as build with Rollup visualizer (`dist/stats.html`) |
-| **`npm run icons`** | Regenerate raster and **maskable** icons in `public/icons/` from `src/assets/logos/logo_black.svg` (requires `sharp`) |
+| **`npm run icons`** | Regenerate raster and **maskable** icons in `public/icons/` from `src/assets/logos/logo_white.svg` (requires `sharp`) |
 
 ## QA / demo: simulated festival day
 

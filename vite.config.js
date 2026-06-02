@@ -42,13 +42,13 @@ export default defineConfig(({ mode }) => ({
         categories: ['music', 'entertainment', 'events'],
         icons: [
           {
-            src: 'icons/logo-black-192.webp',
+            src: 'icons/logo-white-192.webp',
             sizes: '192x192',
             type: 'image/webp',
             purpose: 'any',
           },
           {
-            src: 'icons/logo-black-512.webp',
+            src: 'icons/logo-white-512.webp',
             sizes: '512x512',
             type: 'image/webp',
             purpose: 'any',
