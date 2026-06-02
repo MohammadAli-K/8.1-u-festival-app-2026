@@ -79,10 +79,9 @@ export function PwaSystemBanners() {
   useEffect(() => {
     if (!isMainShell || isStandalonePwa() || installDismissed) {
       setInstallAfterDelay(false);
-      return undefined;
+      return;
     }
-    const id = window.setTimeout(() => setInstallAfterDelay(true), 8000);
-    return () => window.clearTimeout(id);
+    setInstallAfterDelay(true);
   }, [isMainShell, installDismissed]);
 
   const installEligible =
