@@ -10,11 +10,8 @@
   padding: env(safe-area-inset-top, 0px) 0.75rem 0;
   display: flex;
   align-items: center;
+  /* Header stays black in both light and dark mode. */
   background: #000;
-}
-
-html[data-theme='dark'] .app-header {
-  background: #fff;
 }
 
 .app-header__row {
@@ -79,12 +76,9 @@ html[data-theme='dark'] .app-header {
   border: none;
   border-radius: var(--color-radius);
   background: transparent;
+  /* Icons stay white to match the always-black header. */
   color: #fff;
   cursor: pointer;
-}
-
-html[data-theme='dark'] .app-header__icon-btn {
-  color: #000;
 }
 
 .app-header__icon-btn:focus-visible {

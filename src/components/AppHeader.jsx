@@ -1,7 +1,6 @@
 import { useTheme } from '../context/ThemeContext.jsx';
 import { useLanguage } from '../context/LangContext.jsx';
 import { QrCodeButton } from './QrCodeButton.jsx';
-import logoBlack from '../assets/logos/logo_black.svg';
 import logoWhite from '../assets/logos/logo_white.svg';
 import './AppHeader.css';
 
@@ -12,7 +11,6 @@ export function AppHeader({ currentPage, showQrButton = false }) {
   const { theme, toggleTheme } = useTheme();
   const { language, toggleLanguage, t } = useLanguage();
   const themeIcon = theme === 'dark' ? 'light_mode' : 'dark_mode';
-  const logoSrc = theme === 'dark' ? logoBlack : logoWhite;
 
   return (
     <header className="app-header">
@@ -20,7 +18,7 @@ export function AppHeader({ currentPage, showQrButton = false }) {
         <div className="app-header__left">
           <img
             className="app-header__logo"
-            src={logoSrc}
+            src={logoWhite}
             alt="U Festival"
             height={32}
           />
