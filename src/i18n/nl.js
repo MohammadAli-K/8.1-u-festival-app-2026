@@ -94,6 +94,14 @@ export default {
   'schedule.myScheduleHint': 'Alleen favorieten',
   'schedule.emptyMySchedule':
     'Nog geen favorieten. Tik op een optreden en voeg toe met ❤️.',
+  'schedule.filter': 'Filter',
+  'schedule.filter.title': 'Filter het schema',
+  'schedule.filter.stages': 'Podia',
+  'schedule.filter.artists': 'Artiesten',
+  'schedule.filter.reset': 'Wis filters',
+  'schedule.filter.close': 'Klaar',
+  'schedule.emptyFiltered':
+    'Geen optredens die aan dit filter voldoen. Pas je filter aan of wissel van dag.',
   'schedule.axisLabel': 'Programma van 10:00 tot 23:45',
   'schedule.liveNow': 'Nu live',
   'schedule.stage.poton': 'Ponton',

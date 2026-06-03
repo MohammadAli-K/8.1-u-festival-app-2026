@@ -171,7 +171,12 @@ export function getCurrentAndNextForStage(allBlocks, stageId, now, isLiveFn) {
  *   allBlocks: ScheduleBlock[];
  *   getStageRows: (
  *     dayKey: DayKey,
- *     opts: { onlyFavourites: boolean; favouriteIds: Set<string> },
+ *     opts: {
+ *       onlyFavourites: boolean;
+ *       favouriteIds: Set<string>;
+ *       stageIds?: Set<StageId>;
+ *       actIds?: Set<string>;
+ *     },
  *   ) => { stageId: StageId; blocks: ScheduleBlock[] }[];
  *   isLive: (block: ScheduleBlock, now: Date) => boolean;
  *   getCurrentAndNextForStage: (stageId: StageId, now: Date) => {
@@ -206,12 +211,18 @@ export function useSchedule() {
   }, []);
 
   const getStageRows = useCallback(
-    (dayKey, { onlyFavourites, favouriteIds }) => {
+    (dayKey, { onlyFavourites, favouriteIds, stageIds, actIds }) => {
+      const hasStageFilter = stageIds && stageIds.size > 0;
+      const hasActFilter = actIds && actIds.size > 0;
       return stages
+        .filter((stage) => !hasStageFilter || stageIds.has(stage.id))
         .map((stage) => {
-          const blocks = allBlocks.filter(
+          let blocks = allBlocks.filter(
             (b) => b.dayKey === dayKey && b.stageId === stage.id,
           );
+          if (hasActFilter) {
+            blocks = blocks.filter((b) => b.actId !== null && actIds.has(b.actId));
+          }
           const visible = onlyFavourites ? filterBlocksForMySchedule(blocks, favouriteIds) : blocks;
           return { stageId: stage.id, blocks: visible };
         })

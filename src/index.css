@@ -284,6 +284,10 @@ a.tap-scale {
 }
 
 /* Info page */
+.page-info {
+  padding-top: 1rem;
+}
+
 .page-info .info-acc__list {
   margin: 0 0 0.75rem;
   padding-left: 1.1rem;

@@ -10,6 +10,7 @@ import {
   GRID_START_MINUTES,
   stages,
 } from '../../data/schedule.js';
+import { actsById, homeActOrder } from '../../data/acts.js';
 import potonStage from '../../assets/stages/poton.svg';
 import theLakeStage from '../../assets/stages/the-lake.svg';
 import theClubStage from '../../assets/stages/the-club.svg';
@@ -41,8 +42,13 @@ export default function SchedulePage() {
   const [onlyFavourites, setOnlyFavourites] = useState(false);
   const [selectedId, setSelectedId] = useState(/** @type {string | null} */ (null));
   const [now, setNow] = useState(() => getEffectiveNow());
+  const [filterStageIds, setFilterStageIds] = useState(
+    /** @type {Set<import('../../data/schedule.js').StageId>} */ (new Set()),
+  );
+  const [filterActIds, setFilterActIds] = useState(/** @type {Set<string>} */ (new Set()));
+  const [filtersOpen, setFiltersOpen] = useState(false);
 
-  const { loading, error, blocksById, getStageRows, isLive } = useSchedule();
+  const { loading, error, blocksById, allBlocks, getStageRows, isLive } = useSchedule();
   const { favouriteIds, isFavourite, toggleFavourite } = useScheduleFavourites(blocksById);
 
   useEffect(() => {
@@ -55,9 +61,51 @@ export default function SchedulePage() {
       getStageRows(day, {
         onlyFavourites,
         favouriteIds,
+        stageIds: filterStageIds,
+        actIds: filterActIds,
       }),
-    [day, onlyFavourites, getStageRows, favouriteIds],
+    [day, onlyFavourites, getStageRows, favouriteIds, filterStageIds, filterActIds],
   );
+
+  // Only show artists that actually appear somewhere in the schedule data.
+  const scheduledActIds = useMemo(() => {
+    const set = new Set();
+    for (const b of allBlocks) if (b.actId) set.add(b.actId);
+    return set;
+  }, [allBlocks]);
+
+  const artistOptions = useMemo(
+    () =>
+      homeActOrder
+        .filter((id) => scheduledActIds.has(id) && actsById[id])
+        .map((id) => ({ id, name: actsById[id].name })),
+    [scheduledActIds],
+  );
+
+  const filterCount = filterStageIds.size + filterActIds.size;
+
+  const toggleStageFilter = useCallback((stageId) => {
+    setFilterStageIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(stageId)) next.delete(stageId);
+      else next.add(stageId);
+      return next;
+    });
+  }, []);
+
+  const toggleActFilter = useCallback((actId) => {
+    setFilterActIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(actId)) next.delete(actId);
+      else next.add(actId);
+      return next;
+    });
+  }, []);
+
+  const resetFilters = useCallback(() => {
+    setFilterStageIds(new Set());
+    setFilterActIds(new Set());
+  }, []);
 
   const selected = selectedId ? blocksById[selectedId] : null;
 
@@ -95,7 +143,11 @@ export default function SchedulePage() {
     );
   }
 
-  const showEmpty = onlyFavourites && rows.length === 0;
+  const hasAnyFilter = filterCount > 0;
+  const showEmpty = rows.length === 0 && (onlyFavourites || hasAnyFilter);
+  const emptyMessage = onlyFavourites
+    ? t('schedule.emptyMySchedule')
+    : t('schedule.emptyFiltered');
 
   return (
     <div className="page-schedule">
@@ -125,14 +177,27 @@ export default function SchedulePage() {
       </div>
 
       <div className="page-schedule__toolbar">
-        <Button
-          type="button"
-          variant={onlyFavourites ? 'primary' : 'ghost'}
-          aria-pressed={onlyFavourites}
-          onClick={() => setOnlyFavourites((v) => !v)}
-        >
-          {t('schedule.mySchedule')}
-        </Button>
+        <div className="page-schedule__toolbar-buttons">
+          <Button
+            type="button"
+            variant={onlyFavourites ? 'primary' : 'ghost'}
+            aria-pressed={onlyFavourites}
+            onClick={() => setOnlyFavourites((v) => !v)}
+          >
+            {t('schedule.mySchedule')}
+          </Button>
+          <Button
+            type="button"
+            variant={hasAnyFilter ? 'primary' : 'ghost'}
+            aria-pressed={hasAnyFilter}
+            aria-haspopup="dialog"
+            onClick={() => setFiltersOpen(true)}
+          >
+            {hasAnyFilter
+              ? `${t('schedule.filter')} (${filterCount})`
+              : t('schedule.filter')}
+          </Button>
+        </div>
         {onlyFavourites ? (
           <span className="ui-text" style={{ fontSize: '0.85rem' }}>
             {t('schedule.myScheduleHint')}
@@ -147,7 +212,7 @@ export default function SchedulePage() {
         style={{ '--schedule-num-slots': String(NUM_QUARTER_SLOTS) }}
       >
         {showEmpty ? (
-          <p className="page-schedule__empty">{t('schedule.emptyMySchedule')}</p>
+          <p className="page-schedule__empty">{emptyMessage}</p>
         ) : (
           <div className="schedule-grid">
             <div className="schedule-axis">
@@ -241,6 +306,27 @@ export default function SchedulePage() {
           />
         </BottomSheet>
       ) : null}
+
+      {filtersOpen ? (
+        <BottomSheet
+          open
+          onClose={() => setFiltersOpen(false)}
+          title={t('schedule.filter.title')}
+        >
+          <FilterContent
+            t={t}
+            stages={stages}
+            filterStageIds={filterStageIds}
+            onToggleStage={toggleStageFilter}
+            artists={artistOptions}
+            filterActIds={filterActIds}
+            onToggleArtist={toggleActFilter}
+            onReset={resetFilters}
+            onClose={() => setFiltersOpen(false)}
+            hasAnyFilter={hasAnyFilter}
+          />
+        </BottomSheet>
+      ) : null}
     </div>
   );
 }
@@ -289,5 +375,100 @@ function ActDetailContent({ block, language, t, isFavourite, onToggleFavourite, 
         </Button>
       </div>
     </>
+  );
+}
+
+/**
+ * @param {{
+ *   t: (k: string) => string;
+ *   stages: readonly { id: import('../../data/schedule.js').StageId; nameKey: string }[];
+ *   filterStageIds: Set<import('../../data/schedule.js').StageId>;
+ *   onToggleStage: (id: import('../../data/schedule.js').StageId) => void;
+ *   artists: { id: string; name: string }[];
+ *   filterActIds: Set<string>;
+ *   onToggleArtist: (id: string) => void;
+ *   onReset: () => void;
+ *   onClose: () => void;
+ *   hasAnyFilter: boolean;
+ * }} props
+ */
+function FilterContent({
+  t,
+  stages: stageList,
+  filterStageIds,
+  onToggleStage,
+  artists,
+  filterActIds,
+  onToggleArtist,
+  onReset,
+  onClose,
+  hasAnyFilter,
+}) {
+  return (
+    <div className="schedule-filter">
+      <section className="schedule-filter__section" aria-labelledby="schedule-filter-stages">
+        <h3 id="schedule-filter-stages" className="schedule-filter__heading">
+          {t('schedule.filter.stages')}
+        </h3>
+        <div className="schedule-filter__chips" role="group" aria-labelledby="schedule-filter-stages">
+          {stageList.map((stage) => {
+            const active = filterStageIds.has(stage.id);
+            return (
+              <button
+                key={stage.id}
+                type="button"
+                className={`schedule-filter__chip${active ? ' schedule-filter__chip--active' : ''}`}
+                aria-pressed={active}
+                onClick={() => onToggleStage(stage.id)}
+              >
+                {t(stage.nameKey)}
+              </button>
+            );
+          })}
+        </div>
+      </section>
+
+      {artists.length > 0 ? (
+        <section className="schedule-filter__section" aria-labelledby="schedule-filter-artists">
+          <h3 id="schedule-filter-artists" className="schedule-filter__heading">
+            {t('schedule.filter.artists')}
+          </h3>
+          <div
+            className="schedule-filter__chips"
+            role="group"
+            aria-labelledby="schedule-filter-artists"
+          >
+            {artists.map((artist) => {
+              const active = filterActIds.has(artist.id);
+              return (
+                <button
+                  key={artist.id}
+                  type="button"
+                  className={`schedule-filter__chip${active ? ' schedule-filter__chip--active' : ''}`}
+                  aria-pressed={active}
+                  onClick={() => onToggleArtist(artist.id)}
+                >
+                  {artist.name}
+                </button>
+              );
+            })}
+          </div>
+        </section>
+      ) : null}
+
+      <div className="schedule-filter__actions">
+        <Button
+          type="button"
+          variant="ghost"
+          onClick={onReset}
+          disabled={!hasAnyFilter}
+        >
+          {t('schedule.filter.reset')}
+        </Button>
+        <Button type="button" variant="primary" onClick={onClose}>
+          {t('schedule.filter.close')}
+        </Button>
+      </div>
+    </div>
   );
 }

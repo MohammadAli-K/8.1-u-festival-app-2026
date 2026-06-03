@@ -92,6 +92,14 @@ export default {
   'schedule.myScheduleHint': 'Favourites only',
   'schedule.emptyMySchedule':
     'No saved acts yet. Tap an act and add it with ❤️.',
+  'schedule.filter': 'Filter',
+  'schedule.filter.title': 'Filter the schedule',
+  'schedule.filter.stages': 'Stages',
+  'schedule.filter.artists': 'Artists',
+  'schedule.filter.reset': 'Clear filters',
+  'schedule.filter.close': 'Done',
+  'schedule.emptyFiltered':
+    'No performances match this filter. Adjust your filter or switch day.',
   'schedule.axisLabel': 'Programme from 10:00 to 23:45',
   'schedule.liveNow': 'Live now',
   'schedule.stage.poton': 'Ponton',
