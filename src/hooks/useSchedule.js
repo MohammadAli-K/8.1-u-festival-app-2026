@@ -65,7 +65,9 @@ export function isBlockLive(now, start, end) {
  */
 export function blockGridPlacement(start, end) {
   const sm = minutesFromMidnight(start);
-  const em = minutesFromMidnight(end);
+  let em = minutesFromMidnight(end);
+  // End time "24:00" parses to next-day 00:00 (JS Date rollover). Treat any end ≤ start as midnight.
+  if (em <= sm) em += 24 * 60;
   const startCol = Math.round((sm - GRID_START_MINUTES) / 15);
   const span = Math.max(1, Math.round((em - sm) / 15));
   return {

@@ -13,11 +13,18 @@ export default {
   'home.hero.logoAlt': 'U Festival logo',
   'home.section.newsAlerts': 'News & alerts',
   'home.section.upcoming': 'Coming up soon',
+  'home.section.acts': 'Acts',
   'home.upcoming.empty':
     'No performances in the next 2 hours on a festival day.',
   'home.upcoming.cta': 'Open schedule',
   'home.badge.new': 'New',
   'home.empty': 'No news yet. Check back later for updates.',
+  'home.acts.intro':
+    "Meet this year's acts — tap an artist for the full bio and video.",
+  'home.acts.readMore': 'Read more',
+  'home.acts.readLess': 'Show less',
+  'home.acts.youtube': 'Watch on YouTube',
+  'home.acts.expand': 'Open details for this act',
   'info.title': 'Info',
   'info.section.general': 'General & contact',
   'info.general.intro':

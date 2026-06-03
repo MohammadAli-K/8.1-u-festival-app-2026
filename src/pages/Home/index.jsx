@@ -5,6 +5,7 @@ import { useLanguage } from '../../context/LangContext.jsx';
 import { useNews } from '../../hooks/useNews.js';
 import { useSchedule } from '../../hooks/index.js';
 import { getEffectiveNow, getNextActStartingWithin, stages } from '../../data/schedule.js';
+import { actsById, homeActOrder } from '../../data/acts.js';
 import { NewsBlock } from '../../components/NewsBlock.jsx';
 import { Spinner } from '../../components/Spinner.jsx';
 
@@ -142,6 +143,107 @@ export default function HomePage() {
           ))
         )}
       </section>
+
+      <h2 className="home-section__title home-section__title--acts">
+        {t('home.section.acts')}
+      </h2>
+      <p className="home-acts__intro">{t('home.acts.intro')}</p>
+
+      <section className="home-acts" aria-label={t('home.section.acts')}>
+        {homeActOrder
+          .map((id) => actsById[id])
+          .filter(Boolean)
+          .map((act, index) => (
+            <ActCard
+              key={act.id}
+              act={act}
+              language={language}
+              t={t}
+              staggerIndex={index}
+            />
+          ))}
+      </section>
     </div>
+  );
+}
+
+/**
+ * @param {{
+ *   act: import('../../data/acts.js').ActDefinition;
+ *   language: 'nl' | 'en';
+ *   t: (k: string) => string;
+ *   staggerIndex: number;
+ * }} props
+ */
+function ActCard({ act, language, t, staggerIndex }) {
+  const [open, setOpen] = useState(false);
+  const tag = act.shortTag?.[language] ?? act.shortTag?.nl ?? '';
+  const desc = act.description?.[language] ?? act.description?.en ?? '';
+  const style = { '--news-stagger-delay': `${staggerIndex * 70}ms` };
+
+  return (
+    <article
+      className="act-card news-block--stagger"
+      style={style}
+      aria-labelledby={`act-${act.id}-name`}
+    >
+      <button
+        type="button"
+        className="act-card__toggle tap-scale"
+        aria-expanded={open}
+        aria-controls={`act-${act.id}-body`}
+        aria-label={t('home.acts.expand')}
+        onClick={() => setOpen((v) => !v)}
+      >
+        <img
+          className="act-card__img"
+          src={act.imageSrc}
+          alt=""
+          width={320}
+          height={320}
+          loading="lazy"
+          decoding="async"
+        />
+        <div className="act-card__head">
+          <h3 id={`act-${act.id}-name`} className="act-card__name">
+            {act.name}
+          </h3>
+          {tag ? <p className="act-card__tag">{tag}</p> : null}
+        </div>
+        <span
+          className={`material-symbols-outlined act-card__chevron${
+            open ? ' act-card__chevron--open' : ''
+          }`}
+          aria-hidden
+        >
+          expand_more
+        </span>
+      </button>
+
+      <div
+        id={`act-${act.id}-body`}
+        className={`act-card__panel accordion-panel__inner${
+          open ? ' act-card__panel--open' : ''
+        }`}
+        aria-hidden={!open}
+      >
+        <div className="act-card__panel-inner">
+          <p className="act-card__desc">{desc}</p>
+          {act.youtubeUrl ? (
+            <a
+              className="act-card__yt tap-scale"
+              href={act.youtubeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="material-symbols-outlined" aria-hidden>
+                play_circle
+              </span>
+              {t('home.acts.youtube')}
+            </a>
+          ) : null}
+        </div>
+      </div>
+    </article>
   );
 }

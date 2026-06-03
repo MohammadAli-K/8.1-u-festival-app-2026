@@ -13,12 +13,19 @@ export default {
   'home.hero.logoAlt': 'U Festival-logo',
   'home.section.newsAlerts': 'Nieuws & meldingen',
   'home.section.upcoming': 'Straks op het programma',
+  'home.section.acts': 'Acts',
   'home.upcoming.empty':
     'Geen optredens in de komende 2 uur op een festivaldag.',
   'home.upcoming.cta': 'Open schema',
   'home.badge.new': 'Nieuw',
   'home.empty':
     'Er is nog geen nieuws. Trek de pagina later nog eens open voor updates.',
+  'home.acts.intro':
+    'Maak kennis met de acts van dit jaar — tik op een act voor de volledige biografie en de video.',
+  'home.acts.readMore': 'Lees meer',
+  'home.acts.readLess': 'Lees minder',
+  'home.acts.youtube': 'Bekijk op YouTube',
+  'home.acts.expand': 'Open details over de act',
   'info.title': 'Info',
   'info.section.general': 'Algemeen & contact',
   'info.general.intro':

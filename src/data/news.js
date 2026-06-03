@@ -26,7 +26,7 @@ export const newsItems = [
       nl: 'Volg de bewegwijzering naar de aparte ingang voor Golden-GLU tickettypes.',
       en: 'Follow signage to the separate entrance for Golden-GLU ticket types.',
     },
-    timestamp: '2026-09-05T22:00:00',
+    timestamp: '2026-06-03T22:00:00',
     isNew: true,
   },
   {
@@ -40,7 +40,7 @@ export const newsItems = [
       nl: 'Laatste wijziging in het tijdschema — controleer vlak voor optreden opnieuw.',
       en: 'Latest change to the timetable — double-check shortly before the set.',
     },
-    timestamp: '2026-09-05T21:50:00',
+    timestamp: '2026-06-03T21:50:00',
     isNew: true,
   },
   {
@@ -54,7 +54,7 @@ export const newsItems = [
       nl: 'Reserveer of betaal ter plaatse. Pin en contactloos mogelijk.',
       en: 'Book ahead or pay on site. Card and contactless accepted.',
     },
-    timestamp: '2026-09-05T14:00:00',
+    timestamp: '2026-06-03T14:00:00',
     isNew: true,
   },
   {
@@ -68,7 +68,7 @@ export const newsItems = [
       nl: 'Kom op tijd en houd je ticket bij de hand.',
       en: 'Arrive in good time and have your ticket ready.',
     },
-    timestamp: '2026-09-05T12:00:00',
+    timestamp: '2026-06-03T12:00:00',
     isNew: true,
   },
   {
@@ -82,7 +82,7 @@ export const newsItems = [
       nl: 'De pendeldienst rijdt volgens schema. Check de haltes op het terrein.',
       en: 'The shuttle is running to schedule. Check stops on site.',
     },
-    timestamp: '2026-09-05T11:45:00',
+    timestamp: '2026-06-03T11:45:00',
     isNew: true,
   },
 ];
