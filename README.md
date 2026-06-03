@@ -100,3 +100,9 @@ index.html
 Manifest fields and icons are defined in [vite.config.js](vite.config.js) (`VitePWA` → `manifest`). Maskable icons are generated as `logo-maskable-192.webp` / `logo-maskable-512.webp` when you run **`npm run icons`**.
 
 For **Lighthouse PWA ≥ 90**, run Lighthouse against **`npm run preview`** (not `npm run dev`). Address any reported installability / HTTPS / maskable-icon hints.
+
+## Feedback
+
+Peer-review feedback ontvangen van medestudent (ingevulde beoordelingsmatrix):
+
+![Peer-review feedback formulier](src/assets/feedback/feedback.png)
