@@ -37,7 +37,7 @@ export function MainLayout() {
 
   return (
     <div className="app-shell app-shell--main">
-      <AppHeader currentPage={currentPage} />
+      <AppHeader currentPage={currentPage} showQrButton />
       <main className={`app-main${isMapPage ? ' app-main--map' : ''}`}>
         <div className="page-transition" key={pathname}>
           <Outlet />

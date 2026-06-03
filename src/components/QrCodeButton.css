@@ -1,0 +1,130 @@
+.qr-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  pointer-events: none;
+}
+
+.qr-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background: color-mix(in srgb, var(--color-text) 45%, transparent);
+  cursor: pointer;
+  pointer-events: auto;
+  animation: qr-modal-fade 0.18s ease-out both;
+}
+
+.qr-modal__backdrop:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -4px;
+}
+
+.qr-modal__panel {
+  position: relative;
+  width: 100%;
+  max-width: 22rem;
+  background: var(--color-bg);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--color-radius);
+  box-shadow: 0 12px 32px color-mix(in srgb, var(--color-text) 18%, transparent);
+  padding: 1rem 1.1rem 1.25rem;
+  pointer-events: auto;
+  animation: qr-modal-pop 0.22s ease-out both;
+}
+
+.qr-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.qr-modal__title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-secondary);
+}
+
+.qr-modal__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: none;
+  border-radius: var(--color-radius);
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.qr-modal__close:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.qr-modal__image-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem;
+  border-radius: var(--color-radius);
+  background: #fff;
+  border: 1px solid var(--color-border);
+}
+
+.qr-modal__image {
+  display: block;
+  width: 100%;
+  max-width: 18rem;
+  height: auto;
+  aspect-ratio: 1 / 1;
+}
+
+.qr-modal__hint {
+  margin: 0.85rem 0 0;
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--color-muted);
+}
+
+@keyframes qr-modal-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes qr-modal-pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qr-modal__backdrop,
+  .qr-modal__panel {
+    animation: none;
+  }
+}

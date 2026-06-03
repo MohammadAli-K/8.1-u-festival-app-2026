@@ -1,13 +1,14 @@
 import { useTheme } from '../context/ThemeContext.jsx';
 import { useLanguage } from '../context/LangContext.jsx';
+import { QrCodeButton } from './QrCodeButton.jsx';
 import logoBlack from '../assets/logos/logo_black.svg';
 import logoWhite from '../assets/logos/logo_white.svg';
 import './AppHeader.css';
 
 /**
- * @param {{ currentPage: string }} props
+ * @param {{ currentPage: string; showQrButton?: boolean }} props
  */
-export function AppHeader({ currentPage }) {
+export function AppHeader({ currentPage, showQrButton = false }) {
   const { theme, toggleTheme } = useTheme();
   const { language, toggleLanguage, t } = useLanguage();
   const themeIcon = theme === 'dark' ? 'light_mode' : 'dark_mode';
@@ -26,6 +27,7 @@ export function AppHeader({ currentPage }) {
         </div>
 
         <div className="app-header__actions">
+          {showQrButton ? <QrCodeButton /> : null}
           <button
             type="button"
             className="app-header__icon-btn tap-scale"
