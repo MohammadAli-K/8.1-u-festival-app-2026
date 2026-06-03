@@ -10,16 +10,21 @@ import './AppHeader.css';
 export function AppHeader({ currentPage }) {
   const { theme, toggleTheme } = useTheme();
   const { language, toggleLanguage, t } = useLanguage();
-  const logoSrc = theme === 'dark' ? logoWhite : logoBlack;
   const themeIcon = theme === 'dark' ? 'light_mode' : 'dark_mode';
+  const logoSrc = theme === 'dark' ? logoBlack : logoWhite;
 
   return (
     <header className="app-header">
       <div className="app-header__row">
         <div className="app-header__left">
-          <img className="app-header__logo" src={logoSrc} alt="U Festival" height={32} />
+          <img
+            className="app-header__logo"
+            src={logoSrc}
+            alt="U Festival"
+            height={32}
+          />
         </div>
-   
+
         <div className="app-header__actions">
           <button
             type="button"

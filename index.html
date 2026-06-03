@@ -3,6 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <script>
+      // Apply the stored / system color theme before first paint so the page
+      // never starts in the wrong mode and the theme-switch CSS transition
+      // doesn't fire on initial load.
+      (function () {
+        try {
+          var stored = localStorage.getItem('u-festival-theme');
+          var theme =
+            stored === 'light' || stored === 'dark'
+              ? stored
+              : window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light';
+          document.documentElement.dataset.theme = theme;
+        } catch (e) {
+          /* localStorage may be unavailable (private mode) — ignore. */
+        }
+      })();
+    </script>
+    <script>
       // Capture `beforeinstallprompt` as early as possible — it can fire before
       // React mounts, so we stash it in a tiny store that the app reads later.
       (function () {

@@ -18,7 +18,15 @@
   font-weight: 600;
   line-height: 1.35;
   text-align: center;
-  border-bottom: 1px solid color-mix(in srgb, var(--color-text) 12%, transparent);
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--color-text) 12%, transparent);
+  /* Keep the banner on its own compositing layer with a stable glyph rasterization
+     so the text doesn't jitter while background-color / border-color fade during a
+     theme switch. */
+  isolation: isolate;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 .pwa-system-banners__strip--offline {
@@ -37,7 +45,11 @@
 }
 
 .pwa-system-banners__strip--success {
-  background: color-mix(in srgb, var(--color-secondary) 22%, var(--color-surface));
+  background: color-mix(
+    in srgb,
+    var(--color-secondary) 22%,
+    var(--color-surface)
+  );
   color: var(--color-text);
 }
 

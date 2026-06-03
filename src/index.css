@@ -22,6 +22,9 @@
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   --pwa-banner-stack: 0px;
+  --theme-transition-duration: 0.3s;
+  --theme-transition-ease: ease;
+  color-scheme: light;
 }
 
 html[data-theme='dark'] {
@@ -32,6 +35,29 @@ html[data-theme='dark'] {
   --color-muted: color-mix(in srgb, var(--color-text) 42%, transparent);
   --color-fg: var(--color-text);
   --color-stage-hanggar: #444444;
+  color-scheme: dark;
+}
+
+/* Smooth color transitions when toggling between light and dark mode.
+   Only animates color-related properties so existing transform / opacity
+   transitions remain untouched. We avoid animating pseudo-elements separately
+   and skip `box-shadow` to keep paint cheap and prevent text-glyph jitter on
+   compositing layers (e.g. position: fixed banners). */
+* {
+  transition:
+    background-color var(--theme-transition-duration)
+      var(--theme-transition-ease),
+    color var(--theme-transition-duration) var(--theme-transition-ease),
+    border-color var(--theme-transition-duration) var(--theme-transition-ease),
+    outline-color var(--theme-transition-duration) var(--theme-transition-ease),
+    fill var(--theme-transition-duration) var(--theme-transition-ease),
+    stroke var(--theme-transition-duration) var(--theme-transition-ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --theme-transition-duration: 0s;
+  }
 }
 
 html {
