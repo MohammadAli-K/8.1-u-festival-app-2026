@@ -163,7 +163,9 @@ export const STAGE_LOCATIONS = [
 
 /**
  * WGS84 bounding box aligned to this floorplan for **linear** GPS mapping.
- * Values are placeholders around Strijkviertel, Utrecht — replace with surveyed corners from the organisation.
+ * Centred on Grafisch Lyceum Utrecht — Koningin Wilhelminalaan 7, 3527 LA Utrecht
+ * (lat 52.077044, lon 5.106253). Box size is kept at ~1.5 km × 1.3 km to match the
+ * festival floorplan; replace with surveyed corners from the organisation when known.
  *
  * ## GPS → SVG mapping (equirectangular approximation)
  *
@@ -190,10 +192,10 @@ export const STAGE_LOCATIONS = [
  * }}
  */
 export const GEO_REFERENCE = {
-  latMin: 52.022,
-  latMax: 52.034,
-  lonMin: 5.052,
-  lonMax: 5.074,
+  latMin: 52.071044,
+  latMax: 52.083044,
+  lonMin: 5.095253,
+  lonMax: 5.117253,
 };
 
 /** Midpoint of {@link GEO_REFERENCE} — pin for “open in maps” links. */
