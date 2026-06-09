@@ -100,6 +100,9 @@ export default {
   'schedule.filter.artists': 'Artiesten',
   'schedule.filter.reset': 'Wis filters',
   'schedule.filter.close': 'Klaar',
+  'schedule.export': 'Exporteer naar agenda',
+  'schedule.export.empty': 'Markeer eerst favorieten met ❤️.',
+  'schedule.export.filename': 'u-festival-mijn-programma.ics',
   'schedule.emptyFiltered':
     'Geen optredens die aan dit filter voldoen. Pas je filter aan of wissel van dag.',
   'schedule.axisLabel': 'Programma van 10:00 tot 23:45',

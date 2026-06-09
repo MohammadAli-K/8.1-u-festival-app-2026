@@ -11,6 +11,7 @@ import {
   stages,
 } from '../../data/schedule.js';
 import { actsById, homeActOrder } from '../../data/acts.js';
+import { buildIcsCalendar, triggerIcsDownload } from '../../utils/icsExport.js';
 import potonStage from '../../assets/stages/poton.svg';
 import theLakeStage from '../../assets/stages/the-lake.svg';
 import theClubStage from '../../assets/stages/the-club.svg';
@@ -107,6 +108,20 @@ export default function SchedulePage() {
     setFilterActIds(new Set());
   }, []);
 
+  const onExportIcs = useCallback(() => {
+    const stageNameById = (stageId) => {
+      const s = stages.find((x) => x.id === stageId);
+      return s ? t(s.nameKey) : '';
+    };
+    const blocks = [...favouriteIds]
+      .map((id) => blocksById[id])
+      .filter(Boolean)
+      .sort((a, b) => a.start.getTime() - b.start.getTime());
+    if (blocks.length === 0) return;
+    const ics = buildIcsCalendar(blocks, { language, stageName: stageNameById });
+    triggerIcsDownload(t('schedule.export.filename'), ics);
+  }, [favouriteIds, blocksById, language, t]);
+
   const selected = selectedId ? blocksById[selectedId] : null;
 
   const stageMeta = useCallback(
@@ -196,6 +211,19 @@ export default function SchedulePage() {
             {hasAnyFilter
               ? `${t('schedule.filter')} (${filterCount})`
               : t('schedule.filter')}
+          </Button>
+          <Button
+            type="button"
+            variant="ghost"
+            onClick={onExportIcs}
+            disabled={favouriteIds.size === 0}
+            title={favouriteIds.size === 0 ? t('schedule.export.empty') : undefined}
+            aria-label={favouriteIds.size === 0 ? t('schedule.export.empty') : t('schedule.export')}
+          >
+            <span className="material-symbols-outlined" aria-hidden style={{ marginRight: '0.35rem' }}>
+              event_available
+            </span>
+            {t('schedule.export')}
           </Button>
         </div>
         {onlyFavourites ? (

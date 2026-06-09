@@ -98,6 +98,9 @@ export default {
   'schedule.filter.artists': 'Artists',
   'schedule.filter.reset': 'Clear filters',
   'schedule.filter.close': 'Done',
+  'schedule.export': 'Export to calendar',
+  'schedule.export.empty': 'Mark favourites first with ❤️.',
+  'schedule.export.filename': 'u-festival-my-schedule.ics',
   'schedule.emptyFiltered':
     'No performances match this filter. Adjust your filter or switch day.',
   'schedule.axisLabel': 'Programme from 10:00 to 23:45',
